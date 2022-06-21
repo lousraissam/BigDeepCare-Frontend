@@ -1,6 +1,7 @@
 import React from 'react';
 import {AppBar, styled,alpha, Toolbar, Typography, Box, InputBase, Badge, Avatar, Menu, MenuItem} from '@mui/material'
 import {Mail, Notifications, Pets} from '@mui/icons-material'
+import FormatListBulletedIcon from '@mui/icons-material/FormatListBulleted';
 import SearchIcon from '@mui/icons-material/Search';
 import { useState } from 'react';
 import { useNavigate } from "react-router-dom";

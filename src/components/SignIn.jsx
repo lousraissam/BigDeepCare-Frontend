@@ -65,7 +65,7 @@ export default function SignInSide() {
     })
 
 },[username,password])
-//  console.log('this is login', login)
+//  console.log('this is login', username)
    
 
 
@@ -84,6 +84,7 @@ const onSubmit = (e) =>{
   .then((response)=>{
     console.log("response", response)
     var token = "Bearer " + response.data.token
+    console.log('token from signin', token )
 
     axios.get(`http://localhost:9191/service-auth/users/get/${username}`, {
       headers:{

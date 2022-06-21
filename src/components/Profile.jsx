@@ -7,32 +7,27 @@ import {
   CardHeader,
   Divider,
   Grid,
-  TextField
+  TextField,
+  Stack
 } from '@mui/material';
 
-const states = [
-  {
-    value: 'alabama',
-    label: 'Alabama'
-  },
-  {
-    value: 'new-york',
-    label: 'New York'
-  },
-  {
-    value: 'san-francisco',
-    label: 'San Francisco'
-  }
-];
+
+import Navbar from './Navbar';
+import Sidebar from './medecin/SideBarMedecin';
+import { useEffect } from 'react';
+import axios from 'axios'
+
+
+
 
 export const AccountProfileDetails = (props) => {
+  const states=[]
   const [values, setValues] = useState({
-    firstName: 'Katarina',
-    lastName: 'Smith',
-    email: 'demo@devias.io',
+    firstName: '',
+    lastName: '',
+    email: '',
     phone: '',
-    state: 'Alabama',
-    country: 'USA'
+    state:""
   });
 
   const handleChange = (event) => {
@@ -42,15 +37,27 @@ export const AccountProfileDetails = (props) => {
     });
   };
 
+  useEffect(()=>{
+    
+
+  },[])
+
   return (
-    <form 
+    <Box>
+    <Navbar  />
+    <Stack direction="row" spacing={30} justifyContent="space-between">
+        <Sidebar>
+
+            
+        </Sidebar>
+        {/* <Typography variant="body1" color="initial">Dossier medical</Typography> */}
+        <form 
       autoComplete="off"
       noValidate
       {...props}
     >
       <Card>
         <CardHeader
-          subheader="The information can be edited"
           title="Profile"
         />
         <Divider />
@@ -66,7 +73,6 @@ export const AccountProfileDetails = (props) => {
             >
               <TextField
                 fullWidth
-                helperText="Please specify the first name"
                 label="First name"
                 name="firstName"
                 onChange={handleChange}
@@ -127,8 +133,8 @@ export const AccountProfileDetails = (props) => {
             >
               <TextField
                 fullWidth
-                label="Country"
-                name="country"
+                label="Address"
+                name="Address"
                 onChange={handleChange}
                 required
                 value={values.country}
@@ -140,7 +146,8 @@ export const AccountProfileDetails = (props) => {
               md={6}
               xs={12}
             >
-              <TextField
+            
+              {/* <TextField
                 fullWidth
                 label="Select State"
                 name="state"
@@ -159,7 +166,7 @@ export const AccountProfileDetails = (props) => {
                     {option.label}
                   </option>
                 ))}
-              </TextField>
+              </TextField> */}
             </Grid>
           </Grid>
         </CardContent>
@@ -180,5 +187,9 @@ export const AccountProfileDetails = (props) => {
         </Box>
       </Card>
     </form>
-  );
+
+        
+    </Stack>
+    </Box>
+      );
 };

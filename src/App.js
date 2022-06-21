@@ -8,7 +8,14 @@ import { DashboardMedecin } from './components/DashboardMedecine';
 import { DashboardPatient } from './components/DashboardPatient';
 import { DashboardAdmin } from './components/DashboardAdmin';
 import { DashboardAidS } from './components/DashboardAidS';
+import Mypatients from './components/medecin/Mypatients';
+import { AccountProfileDetails } from './components/Profile';
+import CreeDossier from './components/medecin/CreeDossier';
+import DossierMedical from './components/medecin/DossierMedical';
+import ExamenClinique from './components/medecin/ExamenClinique';
+import MesRdv from './components/medecin/MesRdv';
 
+import GetEcg from './components/medecin/GetEcg'
 class App extends Component{
   
 //  state = {
@@ -34,7 +41,6 @@ class App extends Component{
      
     <div>
 
-      <Router>
 
       <Routes>
 
@@ -44,14 +50,17 @@ class App extends Component{
       <Route exact={true} path="/dashboard-AideS" element={<DashboardAidS />} />
       <Route exact={true} path="/dashboard-patient" element={<DashboardPatient />} />
       <Route exact={true} path="/dashboard-admin" element={<DashboardAdmin />} />
-
-
-
+      <Route exact={true}  path="/dashboard-medecin/mes-patients" element={<Mypatients />} />
+      <Route exact={true} path="/dashboard-medecin/creer-dossier" element={<CreeDossier />} />
+      <Route exact={true} path="/dashboard-medecin/dossier-medical" element={<DossierMedical />} />
+      <Route exact={true} path="/dashboard-medecin/examen-clinique" element={<ExamenClinique />} />
+      <Route exact={true} path="/dashboard-medecin/mes-rdv" element={<MesRdv />} />
+      <Route exact={true} path="/dashboard-medecin/mon-profil" element={<AccountProfileDetails />} />
+      <Route exact={true} path="/dashboard-medecin/ecg" element={<GetEcg />} />
 
 
 
       </Routes>
-    </Router>
 
 
    
