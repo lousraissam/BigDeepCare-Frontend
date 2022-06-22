@@ -8,19 +8,36 @@ import {
   Divider,
   Grid,
   TextField,
-  Stack,
-    MenuItem
+  Stack, 
+  Select ,MenuItem
 } from '@mui/material';
 
 import Navbar from '../Navbar';
-import Sidebar from '../AideS/sidebarAideS';
+import Sidebar from './SidebarAdmin';
 import { useEffect } from 'react';
 import axios from 'axios'
 
 
 
- const CreeDossier = () => {
-    const sexes = [
+ const AddUser = () => {
+    const roles = [
+
+        {
+            value: 'ROLE_MEDECIN',
+            label: 'Medecin'
+          },
+        {
+          value: 'ROLE_AIDE_SOIGNANT',
+          label: 'Aide soignant'
+        },
+        {
+          value: 'ROLE_Admin',
+          label: 'Admin'
+        },
+      
+      ];
+
+      const sexes = [
         {
           value: 'HOMME',
           label: 'homme'
@@ -39,7 +56,7 @@ import axios from 'axios'
     password:'',
     dateNaissance:"",
     adresse:"",
-    sexe:"",
+    sexe:"HOMME",
     telephone: '',
     state:"ACTIVE"
   });
@@ -87,7 +104,7 @@ import axios from 'axios'
   const createAcoount = ()=> {
     var token = localStorage.getItem('token')
     token = token.substring(1,token.length-1)
-    axios.post("http://localhost:9191/service-auth/registerPatient", values, {
+    axios.post("http://localhost:9191/service-auth/register", values, {
               headers:{
                 ContentType:'application/json',
                 Authorization: token 
@@ -224,10 +241,9 @@ import axios from 'axios'
                 variant="outlined"
               >
                 {sexes.map((option) => (
-                    <MenuItem key={option.value} value={option.value}>
-                    {option.label}
-                  </MenuItem>
-                
+                 <MenuItem key={option.value} value={option.value}>
+                 {option.label}
+               </MenuItem>
                 ))}
               </TextField>
 
@@ -269,6 +285,34 @@ import axios from 'axios'
               />
             </Grid>
 
+            
+            <Grid
+              item
+              md={6}
+              xs={12}
+            >
+                <TextField
+                fullWidth
+                label="Role"
+                name="role"
+                onChange={handleChange}
+                required
+                select 
+                // SelectProps={{ native: true }}
+                value={values.role}
+                variant="outlined"
+              >
+                {roles.map((option) => (
+                    <MenuItem key={option.value} value={option.value}>
+                    {option.label}
+                  </MenuItem>
+                 
+                ))}
+              </TextField>
+
+
+            </Grid>
+
           
           </Grid>
         </CardContent>
@@ -296,4 +340,4 @@ import axios from 'axios'
     </Box>
       );
 };
- export default CreeDossier
+ export default AddUser

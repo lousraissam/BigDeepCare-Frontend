@@ -6,70 +6,50 @@ import { useNavigate } from "react-router-dom";
 
 import { useLocation } from "react-router-dom";
 import Navbar from '../Navbar';
-import Sidebar from './SideBarMedecin';
+import Sidebar from './SidebarAdmin';
 import axios from 'axios'
 
 
 const columns = [
     { field: 'id', headerName: 'ID', width: 70 },
+    { field: 'username', headerName: 'username', width: 70 },
+
     { field: 'firstName', headerName: 'Nom', width: 130 },
     { field: 'lastName', headerName: 'Prénom', width: 130 },
-    {
-      field: 'age',
-      headerName: 'Age',
-      type: 'number',
-      width: 90,
-    },
-    {
-      field: 'DateCreation',
-      headerName: 'Date de création du dossier',
-      type:"date",
-        
-      width: 150,
-      
-    },
-    {
-        field: 'DateModification',
-        headerName: 'Date du dernière modification',
-        type:"date",
-       
-        width: 150,
-        
-      },
-      {
-        field: 'NumdDeMachine',
-        headerName: 'Num de machine',
-        type: 'number',
-        width: 40,
-      },
+    { field: 'email', headerName: 'email', width: 130 },
+    { field: 'role', headerName: 'Role', width: 130 },
+    { field: 'statue', headerName: 'statue', width: 130 },
+
+
+   
   ];
   
 
 
-const Mypatients = () => {
+const   AllUsers = () => {
     const navigate = useNavigate()
 
-    const [patients, setPatients]=useState([])
+    const [users, setUsers]=useState([])
     const [selected, setSelected] = useState(null);
 
 
     const handleOnCellClick = (params) => {
       setSelected(params);
-      var diveceKey = selected.row.NumdDeMachine
-      console.log('device',diveceKey )
-
-      navigate("/dashboard-medecin/ecg", { state: { NumDeMachine: diveceKey } })
     };
-    console.log("patients", patients);
+    console.log("all users", users);
 
     console.log("selected",selected)
   
 
     const rows=[]
  
-    for(let i=0;i<patients.length ;i++){
-        let patient = {id: i, lastName: patients[i].prenom, firstName: patients[i].nom, age: patients[i].age, NumdDeMachine:patients[i].deviceKey }
-       rows.push(patient)
+    for(let i=0;i<users.length ;i++){
+        let user = {id: users[i].id, lastName: users[i].prenom, firstName: users[i].nom, username: users[i].username,
+        email: users[i].email,
+        role: users[i].role,
+        statue:users[i].state
+        }
+       rows.push(user)
     }
 
     // const rows1 = [
@@ -89,10 +69,9 @@ const Mypatients = () => {
 
 
     useEffect(()=>{
-        let token= localStorage.getItem("token")
-        let id= localStorage.getItem("id")
+        var token= localStorage.getItem("token")
         token = token.substring(1,token.length-1)  
-        axios.get(`http://localhost:9191/service-auth/users/medecin/${id}/patients`, {
+        axios.get("http://localhost:9191/service-auth/users", {
             headers:{
                 ContentType:'application/json',
                 Authorization: token         
@@ -100,12 +79,7 @@ const Mypatients = () => {
         })
         .then((response)=>{
             var data=response.data
-            setPatients(data)
-            // setNom(response.data[0].nom)
-            // setPrenom(response.data[0].prenom)
-            // setAge(response.data[0].age)
-
-
+            setUsers(data)
 
         })
 
@@ -132,7 +106,7 @@ const Mypatients = () => {
         rows={rows}
         columns={columns}
         pageSize={7}
-        rowsPerPageOptions={[7]}
+        rowsPerPageOptions={[8]}
         checkboxSelection
         onRowClick={handleOnCellClick}
       />
@@ -145,4 +119,4 @@ const Mypatients = () => {
     );
 };
 
-export default Mypatients;
+export default AllUsers;

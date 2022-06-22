@@ -94,9 +94,13 @@ const onSubmit = (e) =>{
   })
     .then((response)=>{
       var role=response.data.role
+      let id = response.data.id
       console.log(role)
       if (response.status===200){
         localStorage.setItem('token', JSON.stringify(token));
+        localStorage.setItem('username', JSON.stringify(username))
+        localStorage.setItem('id',JSON.stringify(id) )
+
 
         if(role==="ROLE_MEDECIN"){
           console.log("dashbord-medecin")

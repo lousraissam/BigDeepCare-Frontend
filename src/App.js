@@ -14,8 +14,14 @@ import CreeDossier from './components/medecin/CreeDossier';
 import DossierMedical from './components/medecin/DossierMedical';
 import ExamenClinique from './components/medecin/ExamenClinique';
 import MesRdv from './components/medecin/MesRdv';
-
 import GetEcg from './components/medecin/GetEcg'
+import { ProfilAideS } from './components/AideS/ProfileAides';
+import CreerMedical from './components/AideS/CreerMedical';
+// admin
+import AllUsers from './components/Admin/AllUsers';
+import AddUser from './components/Admin/AddUser';
+import { ProfileAdmin } from './components/Admin/ProfilAdmin';
+
 class App extends Component{
   
 //  state = {
@@ -55,8 +61,22 @@ class App extends Component{
       <Route exact={true} path="/dashboard-medecin/dossier-medical" element={<DossierMedical />} />
       <Route exact={true} path="/dashboard-medecin/examen-clinique" element={<ExamenClinique />} />
       <Route exact={true} path="/dashboard-medecin/mes-rdv" element={<MesRdv />} />
-      <Route exact={true} path="/dashboard-medecin/mon-profil" element={<AccountProfileDetails />} />
+      <Route exact={true} path="/mon-profil" element={<AccountProfileDetails />} />
       <Route exact={true} path="/dashboard-medecin/ecg" element={<GetEcg />} />
+
+      {/* aideS */}
+      <Route exact={true} path="/dashboard-aideS/creer-medical" element={<CreerMedical />} />
+
+
+        {/* admin */}
+        <Route exact={true} path="/dashboard-admin/all-users" element={<AllUsers />} />
+        <Route exact={true} path="/dashboard-admin/add-user" element={<AddUser />} />
+        <Route exact={true} path="/dashboard-admin/mon-profil" element={<ProfileAdmin />} />
+        <Route exact={true} path="/dashboard-aideS/mon-profil" element={<ProfilAideS />} />
+
+
+
+
 
 
 

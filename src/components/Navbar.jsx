@@ -59,12 +59,15 @@ const Search = styled('div')(({ theme }) => ({
 const Icons = styled(Box)(({ theme })=>({display:"flex", gap:"20px", alignItems:"center"
 }))
 const Navbar = (props) => {
-    console.log("from props",props.username)
+    // console.log("from props",props.username)
     const [open, setOpen] = useState(false)
     const navigate = useNavigate()
 
     const onLogOut =()=>{
         localStorage.removeItem('token');
+        localStorage.removeItem('username')
+        localStorage.removeItem('id')
+
         navigate('/')
       
       }

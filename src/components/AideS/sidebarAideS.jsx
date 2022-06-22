@@ -13,12 +13,24 @@ import ModeNightIcon from '@mui/icons-material/ModeNight';
 import MonitorHeartIcon from '@mui/icons-material/MonitorHeart';
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
+import MedicalInformationIcon from '@mui/icons-material/MedicalInformation';
+import { styled, useTheme } from '@mui/material/styles';
+
+import { NavLink, Link } from 'react-router-dom';
+
+
+
+const StyledNavLink = styled(NavLink)(({ theme }) => ({
+  textDecoration: 'none',
+  color:'#1F1F1F'
+}));
 
 const Sidebar = ({mode, setMode}) => {
     return (
         <Box  flex={1} p={2} sx={{display:{xs: "none", sm:"block"}}}>
           <Box position="fixed">
             <List >
+
           <ListItem disablePadding>
             <ListItemButton >
               <ListItemIcon>
@@ -26,6 +38,30 @@ const Sidebar = ({mode, setMode}) => {
               </ListItemIcon>
               <ListItemText primary="Dashboard" />
             </ListItemButton>
+          </ListItem>
+          <StyledNavLink to="/dashboard-medecin/creer-dossier">
+
+          <ListItem disablePadding>
+            <ListItemButton >
+              <ListItemIcon>
+                <AddCircleIcon />
+              </ListItemIcon>
+              <ListItemText primary="Créer un compte" />
+            </ListItemButton>
+          </ListItem>
+          </StyledNavLink>
+
+          <ListItem disablePadding>
+          <StyledNavLink to="/dashboard-aideS/creer-medical">
+
+            <ListItemButton >
+              <ListItemIcon>
+                <MedicalInformationIcon />
+              </ListItemIcon>
+              <ListItemText primary="Créer un dossier" />
+              
+            </ListItemButton>
+            </StyledNavLink>
           </ListItem>
 
           <ListItem disablePadding>
@@ -36,15 +72,8 @@ const Sidebar = ({mode, setMode}) => {
               <ListItemText primary="Rendez vous" />
             </ListItemButton>
           </ListItem>
-        
-          <ListItem disablePadding>
-            <ListItemButton >
-              <ListItemIcon>
-                <AddCircleIcon />
-              </ListItemIcon>
-              <ListItemText primary="Créer un dossier" />
-            </ListItemButton>
-          </ListItem>
+          
+          
 
 
       
@@ -56,6 +85,7 @@ const Sidebar = ({mode, setMode}) => {
               <ListItemText primary="Settings" />
             </ListItemButton>
           </ListItem>
+          <StyledNavLink to="/dashboard-aideS/mon-profil">
 
           <ListItem disablePadding>
             <ListItemButton >
@@ -65,6 +95,7 @@ const Sidebar = ({mode, setMode}) => {
               <ListItemText primary="Profile" />
             </ListItemButton>
           </ListItem>
+          </StyledNavLink>
          
           {/* <ListItem disablePadding>
             <ListItemButton >

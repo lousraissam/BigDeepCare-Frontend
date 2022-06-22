@@ -86,7 +86,7 @@ useEffect(() => {
     if (!components) return
 
     // Set chart data.
-    console.log("data from this state",data1)
+    // console.log("data from this state",data1)
     // const { series } = components
     const { chart } = components
     const series = chart.addLineSeries(
@@ -135,7 +135,7 @@ useEffect(() => {
                     newDataPoints.push(point)
                 }
             
-                console.log("newDataPoints", newDataPoints)
+                // console.log("newDataPoints", newDataPoints)
             series.add(newDataPoints)
             xPos += newDataPointsCount
     
@@ -150,7 +150,7 @@ useEffect(() => {
 
 
    
-  }, [data, chartRef])
+  }, [data,result,  chartRef])
   return <div  className='chart'>
       type of disease is {result[0]} with confidence of {result[1]}%
 

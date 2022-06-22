@@ -12,15 +12,15 @@ import {
 } from '@mui/material';
 
 
-import Navbar from './Navbar';
-import Sidebar from './medecin/SideBarMedecin';
+import Navbar from '../Navbar';
+import Sidebar from './sidebarAideS';
 import { useEffect } from 'react';
 import axios from 'axios'
 
 
 
 
-export const AccountProfileDetails = (props) => {
+export const ProfilAideS = (props) => {
   const states=[]
   const [values, setValues] = useState({
     firstName: '',

@@ -13,13 +13,13 @@ const url = "http://localhost:8086";
 
 
 
-let query = `from(bucket: "ecg")
-|> range(start: -100h)
-|> filter(fn: (r) => r["_measurement"] == "ecg")
-|> filter(fn: (r) => r["_field"] == "value")
-|> filter(fn: (r) => r["patient_id"] == "p2")
-|>last()
-  `;
+// let query = `from(bucket: "ecg")
+// |> range(start: -100h)
+// |> filter(fn: (r) => r["_measurement"] == "ecg")
+// |> filter(fn: (r) => r["_field"] == "value")
+// |> filter(fn: (r) => r["patient_id"] == "p2")
+// |>last()
+//   `;
 
 const  GetEcg = (props) => {
 const [data, setData] = useState([]);
@@ -27,7 +27,7 @@ const [data, setData] = useState([]);
 const [result, setResult] = useState([]);
 const location = useLocation();
 const deviceKey=location.state.NumDeMachine
-console.log("devece key from getdata", deviceKey)
+// console.log("devece key from getdata", deviceKey)
 var ecgF = []
 let query = `from(bucket: "ecg")
 |> range(start: -100h)
@@ -85,7 +85,7 @@ useEffect(() => {
         
           // const interval = setInterval(() => {
           setData(ecgF);
-          console.log("data from getEcg", data)
+          // console.log("data from getEcg", data)
           setResult(result)
 
         // }, 1000)
@@ -112,7 +112,7 @@ useEffect(() => {
       clearInterval(intervalQ)
     }
 
-},[data]);
+},[data, result]);
 
 return (
  <div >

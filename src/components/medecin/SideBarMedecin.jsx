@@ -117,7 +117,7 @@ const Sidebar = ({children}) => {
           </ListItem>
 
           <ListItem disablePadding>
-            <StyledNavLink to="/dashboard-medecin/mon-profil">
+            <StyledNavLink to="/mon-profil">
             <ListItemButton >
               <ListItemIcon>
                 <AccountBoxIcon />
