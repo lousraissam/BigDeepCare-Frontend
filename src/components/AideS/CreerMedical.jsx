@@ -35,6 +35,13 @@ const [medecin, setMedecin]=useState()
     selectedPat:''
    });
 
+   const [medical, setMedical] = useState({
+    patientId: "",
+    createDate: "",
+    description: "",
+    antecedents: []
+   })
+
 
   const handleChangeMedecin = (event) => {
     var token = localStorage.getItem('token')
@@ -80,6 +87,29 @@ const [medecin, setMedecin]=useState()
       .then((response)=>{
         let data = response.data
         setPatient(data)
+
+        // to create ampty medical record
+        var d = new Date
+        var month = d.getMonth()+1
+        var day = d.getDate()
+        if (month<10){month = '0' + month}
+        if(day<10){day= '0'+day}
+        
+        var date = [d.getFullYear(),
+                 month,
+                day,
+               ].join('-')
+             
+          // date = date.toString()
+          console.log("date", date)
+
+        setMedical({
+          patientId:valuesPat.selectedPat,
+          createDate: "2022-07-01",
+          description: "un nouveau Patient avec des signes...",
+          antecedents: []
+
+        })
         console.log('patients data', data)
       })
       .catch((err)=>console.log('error',err))
@@ -89,6 +119,10 @@ const [medecin, setMedecin]=useState()
 
   };
   console.log('valus of patients', valuesPat)
+  console.log("valueMed", valuesMed)
+
+  console.log("medical", medical)
+
 
 
 
@@ -109,6 +143,18 @@ const [medecin, setMedecin]=useState()
                 console.log("patient added to medecin",data);
             })
             .catch((err)=>console.log("error",err))
+
+        axios.post("http://localhost:9191/service-dm/DM/add", medical,  {
+          headers:{
+            ContentType:'application/json',
+            Authorization: token 
+          }
+        })
+        .then((response)=>{
+            let data=response.data
+            console.log("empty medical record created",data);
+        })
+        .catch((err)=>console.log("error",err))
 
 
     

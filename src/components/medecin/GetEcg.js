@@ -27,7 +27,7 @@ const [data, setData] = useState([]);
 const [result, setResult] = useState([]);
 const location = useLocation();
 const deviceKey=location.state.NumDeMachine
-// console.log("devece key from getdata", deviceKey)
+console.log("devece key from ... to getdata", deviceKey)
 var ecgF = []
 let query = `from(bucket: "ecg")
 |> range(start: -100h)

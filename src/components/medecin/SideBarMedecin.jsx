@@ -59,27 +59,8 @@ const Sidebar = ({children}) => {
           </ListItem>
           </StyledNavLink >
 
-          <ListItem disablePadding>
-            <StyledNavLink to="/dashboard-medecin/creer-dossier">
-            <ListItemButton >
-              <ListItemIcon>
-                <AddCircleIcon />
-              </ListItemIcon>
-              <ListItemText primary="Créer un dossier" />
-            </ListItemButton>
-            </StyledNavLink>
-          </ListItem>
 
-          <ListItem disablePadding>
-            <StyledNavLink to="/dashboard-medecin/dossier-medical">
-            <ListItemButton >
-              <ListItemIcon>
-                <AssignmentIcon />
-              </ListItemIcon>
-              <ListItemText primary="Dossier medical" />
-            </ListItemButton>
-            </StyledNavLink>
-          </ListItem>
+     
 
           <ListItem disablePadding>
             <StyledNavLink to="/dashboard-medecin/examen-clinique">

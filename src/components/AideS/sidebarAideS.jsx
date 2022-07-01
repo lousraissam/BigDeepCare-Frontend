@@ -17,6 +17,9 @@ import MedicalInformationIcon from '@mui/icons-material/MedicalInformation';
 import { styled, useTheme } from '@mui/material/styles';
 
 import { NavLink, Link } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faUserDoctor } from '@fortawesome/free-solid-svg-icons'
+
 
 
 
@@ -29,7 +32,10 @@ const Sidebar = ({mode, setMode}) => {
     return (
         <Box  flex={1} p={2} sx={{display:{xs: "none", sm:"block"}}}>
           <Box position="fixed">
-            <List >
+            <List >   
+        
+
+         
 
           <ListItem disablePadding>
             <ListItemButton >
@@ -39,7 +45,28 @@ const Sidebar = ({mode, setMode}) => {
               <ListItemText primary="Dashboard" />
             </ListItemButton>
           </ListItem>
+
+          <StyledNavLink to= "/dashboard-aideS/medecins">
+          <ListItem disablePadding>
+            <ListItemButton >
+              <ListItemIcon>
+              <FontAwesomeIcon icon={faUserDoctor} />
+              </ListItemIcon>
+              <ListItemText primary="Liste des medecins" />
+            </ListItemButton>
+          </ListItem>
+          </StyledNavLink>
           <StyledNavLink to="/dashboard-medecin/creer-dossier">
+          <StyledNavLink to= "/dashboard-aideS/patients">
+          <ListItem disablePadding>
+            <ListItemButton >
+              <ListItemIcon>
+                <GroupsIcon />
+              </ListItemIcon>
+              <ListItemText primary="Liste des patients" />
+            </ListItemButton>
+          </ListItem>
+          </StyledNavLink>
 
           <ListItem disablePadding>
             <ListItemButton >
@@ -65,12 +92,15 @@ const Sidebar = ({mode, setMode}) => {
           </ListItem>
 
           <ListItem disablePadding>
+          <StyledNavLink to="/dashboard-aideS/creer-rdv">
+
             <ListItemButton >
               <ListItemIcon>
                 <CalendarMonthIcon />
               </ListItemIcon>
               <ListItemText primary="Rendez vous" />
             </ListItemButton>
+            </StyledNavLink>
           </ListItem>
           
           

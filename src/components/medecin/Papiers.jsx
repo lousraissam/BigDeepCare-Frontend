@@ -1,66 +1,68 @@
-import { useState } from 'react';
+import React from 'react';
 import {
-  Box,
-  Button,
-  Card,
-  CardContent,
-  CardHeader,
-  Divider,
-  Grid,
-  TextField,
-  Stack
-} from '@mui/material';
+    Box,
+    Button,
+    Card,
+    CardContent,
+    CardHeader,
+    Divider,
+    Grid,
+    TextField,
+    Stack,
+    Typography
+  } from '@mui/material';
+  
+  
+  
+  import { useEffect, useState } from 'react';
+  import axios from 'axios'
+import { useLocation } from "react-router-dom";
 
 
-import Navbar from './Navbar';
-import Sidebar from './medecin/SideBarMedecin';
-import { useEffect } from 'react';
-import axios from 'axios'
+const Papiers = () => {
+    const location = useLocation();
+    const [values, setValues] = useState({
+        firstName: '',
+        lastName: '',
+        email: '',
+        phone: '',
+        adresse:"",
+        state:""
+      });
 
+    
 
+//   useEffect(()=>{
 
+//     var token = localStorage.getItem('token')
+//     token = token.substring(1,token.length-1)
+//     console.log("token from profil", token)
+//     var username = localStorage.getItem('username')
+//     username=username.substring(1,username.length-1)
+//     axios.get(`http://localhost:9191/service-auth/users/patient/${idPatient}`,{
+//       headers:{
+//         ContentType:'application/json',
+//         Authorization: token 
+//       }
+//     })
+//     .then((response)=>{
+//       var data=response.data
+//       console.log("patient response from dossier medical",data);
+//       setValues({
+//          firstName: data.prenom,
+//          lastName: data.nom,
+//           email: '',
+//           phone: data.telephone,
+//           state:""
 
-export const AccountProfileDetails = (props) => {
-  const states=[]
-  const [values, setValues] = useState({
-    firstName: '',
-    lastName: '',
-    email: '',
-    phone: '',
-    state:""
-  });
+//       })
 
-  useEffect(()=>{
-
-    var token = localStorage.getItem('token')
-    token = token.substring(1,token.length-1)
-    console.log("token from profil", token)
-    var username = localStorage.getItem('username')
-    username=username.substring(1,username.length-1)
-    axios.get(`http://localhost:9191/service-auth/users/get/${username}`,{
-      headers:{
-        ContentType:'application/json',
-        Authorization: token 
-      }
-    })
-    .then((response)=>{
-      var data=response.data
-      console.log("profil response",data);
-      setValues({
-         firstName: data.username,
-         lastName: data.nom,
-          email: '',
-          phone: data.telephone,
-          state:""
-
-      })
-
-    })
-    .catch((err)=>console.log("error", err))
+//     })
+//     .catch((err)=>console.log("error", err))
       
    
 
-  },[])
+//   },[])
 
   const handleChange = (event) => {
     setValues({
@@ -69,24 +71,21 @@ export const AccountProfileDetails = (props) => {
     });
   };
 
-  
 
-  return (
-    <Box>
-    <Navbar  />
-    <Stack direction="row" spacing={30} justifyContent="space-between">
-        <Sidebar>
-            
-        </Sidebar>
-        {/* <Typography variant="body1" color="initial">Dossier medical</Typography> */}
-        <form 
+
+
+
+    return (
+
+        <Box >
+     
+    <form style={{marginTop:"1%"}}
       autoComplete="off"
       noValidate
-      {...props}
     >
       <Card>
         <CardHeader
-          title="Profile"
+          title="Papiers"
         />
         <Divider />
         <CardContent>
@@ -94,6 +93,22 @@ export const AccountProfileDetails = (props) => {
             container
             spacing={3}
           >
+         
+            <Grid
+              item
+              md={6}
+              xs={12}
+            >
+              <TextField
+                fullWidth
+                label="last name"
+                name="lastName"
+                onChange={handleChange}
+                required
+                value={values.lastName}
+                variant="outlined"
+              />
+            </Grid>
             <Grid
               item
               md={6}
@@ -106,21 +121,6 @@ export const AccountProfileDetails = (props) => {
                 onChange={handleChange}
                 required
                 value={values.firstName}
-                variant="outlined"
-              />
-            </Grid>
-            <Grid
-              item
-              md={6}
-              xs={12}
-            >
-              <TextField
-                fullWidth
-                label="Last name"
-                name="lastName"
-                onChange={handleChange}
-                required
-                value={values.lastName}
                 variant="outlined"
               />
             </Grid>
@@ -165,7 +165,7 @@ export const AccountProfileDetails = (props) => {
                 name="Address"
                 onChange={handleChange}
                 required
-                value={values.country}
+                value={values.adresse}
                 variant="outlined"
               />
             </Grid>
@@ -175,26 +175,7 @@ export const AccountProfileDetails = (props) => {
               xs={12}
             >
             
-              {/* <TextField
-                fullWidth
-                label="Select State"
-                name="state"
-                onChange={handleChange}
-                required
-                select
-                SelectProps={{ native: true }}
-                value={values.state}
-                variant="outlined"
-              >
-                {states.map((option) => (
-                  <option
-                    key={option.value}
-                    value={option.value}
-                  >
-                    {option.label}
-                  </option>
-                ))}
-              </TextField> */}
+           
             </Grid>
           </Grid>
         </CardContent>
@@ -215,9 +196,11 @@ export const AccountProfileDetails = (props) => {
         </Box>
       </Card>
     </form>
-
+        </Box>
         
-    </Stack>
-    </Box>
-      );
+    );
+
+ 
 };
+
+export default Papiers;
