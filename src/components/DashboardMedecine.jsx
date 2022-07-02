@@ -20,7 +20,7 @@ export const DashboardMedecin = ()=>{
     return(
         <div>
             <Box>
-            <Navbar  username={location.state.username}/>
+            <Navbar/>
             <Stack direction="row" spacing={30} justifyContent="space-between">
                 <Sidebar  >
 

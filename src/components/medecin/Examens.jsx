@@ -11,14 +11,22 @@ import {
     Grid,
     TextField,
     Stack,
-    Typography
+    Typography,
+    styled
   } from '@mui/material';
   
   
   import bgEcg from '../../images/consulteECG.jpg'
+  import ecgimg from '../../images/ec.png'
   import { useEffect, useState } from 'react';
   import axios from 'axios'
 import { useLocation, useNavigate } from "react-router-dom";
+import { NavLink, Link } from 'react-router-dom';
+
+const StyledNavLink = styled(NavLink)(({ theme }) => ({
+  textDecoration: 'none',
+  color:'#1F1F1F'
+}));
 
 
 const Examens = (props) => {
@@ -146,25 +154,6 @@ const showEcg = () =>{
       </Card>
     </form>
     </Box>
-    {/* <Box>
-
-    <Card sx={{ maxWidth: 1000 }} onDoubleClick={showEcg}>
-      <CardActionArea>
-        <CardMedia
-          component="img"
-          height="100"
-          width='350'
-          image={bgEcg}
-          alt="ECG"
-        />
-        <CardContent>
-          <Typography variant="body2" color="text.secondary">
-            Consulter ECG du Patient 
-          </Typography>
-        </CardContent>
-      </CardActionArea>
-    </Card>
-    </Box> */}
      <Box>
     <form style={{marginTop:"1%"}}
       autoComplete="off"
@@ -263,6 +252,7 @@ const showEcg = () =>{
     </Box>
 
     <Box>
+    <StyledNavLink to= '/dashboard-medecin/ecg_img'>
 
 <Card sx={{ width: 250, height: 160 }} onDoubleClick={showEcg}>
   <CardActionArea>
@@ -270,16 +260,17 @@ const showEcg = () =>{
       component="img"
       height="100"
       width='350'
-      image={bgEcg}
+      image={ecgimg}
       alt="ECG"
     />
     <CardContent>
       <Typography variant="body2" color="text.secondary">
-        Consulter ECG du Patient 
+        Consulter ECG via image 
       </Typography>
     </CardContent>
   </CardActionArea>
 </Card>
+</StyledNavLink>
 </Box>
 </Stack>
 

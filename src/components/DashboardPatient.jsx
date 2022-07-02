@@ -10,7 +10,7 @@ export const DashboardPatient= ()=>{
     return(
         <div>
               <Box>
-            <Navbar username={location.state.username}/>
+            <Navbar />
             <Stack direction="row" spacing={30} justifyContent="space-between">
                 <Sidebar></Sidebar>
                 {/* <AccountProfileDetails></AccountProfileDetails> */}

@@ -55,8 +55,24 @@ function a11yProps(index) {
 export default function AllAboutPatient() {
     const location = useLocation();
     const idPatient=location.state.idPatient
+    const [idConsultation, setIdconsultation] = useState()
     const NumDeMachine=location.state.NumDeMachine
     const [value, setValue] = useState(0);
+
+    axios.get(`http://localhost:9191/service-dm/DM/patient/${idPatient}`)
+    .then((response)=>{
+      let idDm = response.data.id
+      console.log('DM id', idDm)
+      axios.get(`http://localhost:9191/service-dm/Consultation/DM/${idDm}`)
+      
+      .then((response)=>{
+        let idCons =  response.data[0].id
+        setIdconsultation(idCons)
+        console.log('consultation from dm', response.data[0].id)}
+        )
+    })
+
+    
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -96,7 +112,7 @@ export default function AllAboutPatient() {
         <Antecedent idPatient={idPatient}></Antecedent>
       </TabPanel>
       <TabPanel value={value} index={2}>
-        <Interogatoire></Interogatoire>
+        <Interogatoire idConsultation={idConsultation}></Interogatoire>
       </TabPanel>
       <TabPanel  value={value} index={3}>
         <Examens NumDeMachine={NumDeMachine}/>

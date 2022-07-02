@@ -26,6 +26,8 @@ import AllMedecins from './components/AideS/AllMedecins';
 import AllPatients from './components/AideS/AllPatients';
 import MesRdv from './components/medecin/MesRdv';
 
+
+import { ImageUpload } from './components/medecin/ImageUpload';
 class App extends Component{
   
 //  state = {
@@ -71,6 +73,9 @@ class App extends Component{
 
 
       <Route exact={true} path="/dashboard-medecin/ecg" element={<GetEcg />} />
+      <Route exact={true} path="/dashboard-medecin/ecg_img" element={<ImageUpload />} />
+
+      
 
       {/* aideS */}
       <Route exact={true} path="/dashboard-aideS/medecins" element={<AllMedecins />} />

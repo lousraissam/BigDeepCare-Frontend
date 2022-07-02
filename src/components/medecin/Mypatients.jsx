@@ -60,11 +60,12 @@ const Mypatients = () => {
       setSelected(params);
 
       // for addData to add after 
-      var diveceKey = selected.row.NumdDeMachine
+      // if (selected!==is)
+      var diveceKey = params.row.NumdDeMachine
       // console.log('device',diveceKey )
 
       // navigate("/dashboard-medecin/ecg", { state: { NumDeMachine: diveceKey } })
-      let idPatient = selected.row.id
+      let idPatient = params.row.id
       // navigate("/dashboard-medecin/dossier-medical", { state: { idPatient: idPatient } })
       navigate("/dashboard-medecin/patient", { state: { idPatient: idPatient,NumDeMachine: diveceKey } })
 

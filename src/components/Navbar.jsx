@@ -60,6 +60,8 @@ const Icons = styled(Box)(({ theme })=>({display:"flex", gap:"20px", alignItems:
 }))
 const Navbar = (props) => {
     // console.log("from props",props.username)
+    let username = localStorage.getItem('username')
+  username = username.substring(1,username.length-1)
     const [open, setOpen] = useState(false)
     const navigate = useNavigate()
 
@@ -102,7 +104,7 @@ const Navbar = (props) => {
                 </Badge>
                 
                 <Avatar onClick={e=>setOpen(true)} sx={{with:"20px", hight:"20px"}} alt="lousra issam" src="../images/med1.jpeg" />
-                <Typography onClick={e=>setOpen(true)} variant='h6' sx={{display:{xs:"none", sm:'block'}}}> {props.username} </Typography>
+                <Typography onClick={e=>setOpen(true)} variant='h6' sx={{display:{xs:"none", sm:'block'}}}> {username} </Typography>
                 </Icons>
             </StyledToolbar>
 
