@@ -14,13 +14,12 @@ import {
   
   
   
-  import { useEffect, useState } from 'react';
+  import { useEffect, useState, useRef } from 'react';
   import axios from 'axios'
 import { useLocation } from "react-router-dom";
 
 
-const Billans = () => {
-    const location = useLocation();
+const Billans = (props) => {
     const [values, setValues] = useState({
         firstName: '',
         lastName: '',
@@ -29,44 +28,158 @@ const Billans = () => {
         adresse:"",
         state:""
       });
+    
+    
 
     
 
-//   useEffect(()=>{
-
-//     var token = localStorage.getItem('token')
-//     token = token.substring(1,token.length-1)
-//     console.log("token from profil", token)
-//     var username = localStorage.getItem('username')
-//     username=username.substring(1,username.length-1)
-//     axios.get(`http://localhost:9191/service-auth/users/patient/${idPatient}`,{
-//       headers:{
-//         ContentType:'application/json',
-//         Authorization: token 
-//       }
-//     })
-//     .then((response)=>{
-//       var data=response.data
-//       console.log("patient response from dossier medical",data);
-//       setValues({
-//          firstName: data.prenom,
-//          lastName: data.nom,
-//           email: '',
-//           phone: data.telephone,
-//           state:""
-
-//       })
-
-//     })
-//     .catch((err)=>console.log("error", err))
+      var d = new Date
+      var month = d.getMonth()+1
+      var day = d.getDate()
+      if (month<10){month = '0' + month}
+      if(day<10){day= '0'+day}
       
+      var date = [d.getFullYear(),
+               month,
+              day,
+             ].join('-')
+
+
    
+      const [creatinine, setCreatinine] = useState('')
+      const [triglycerides, setTriglycerides] = useState('')
+      const [cholesterolTotal, setCholesterolTotal] = useState('')
+      const [hdlCholesterol, setHdlCholesterol] = useState('')
+       const [ldlCholesterol, setLdlCholesterol] = useState('')
 
-//   },[])
+        const [glycemie_a_jeun, setGlycemie_a_jeun] = useState('')
+        const [hemoglobine_glyquee, setHemoglobine_glyquee] = useState('')
 
-  const handleChange = (event) => {
-    setValues({
-      ...values,
+        const [pH, setPH] = useState('')
+        const [densite, setDensite] = useState('')
+        const [glucose, setGlucose] = useState('')
+        const [corps_cetoniques, setCorps_cetoniques] = useState('')
+        const [proteines, setProteines] = useState('')
+        const [sang, setSang] = useState('')
+        const [leucocytes, setLeucocytes] = useState('')
+        const [nitrites, setNitrites] = useState('')
+        const [urobilinogene, setUrobilinogene] = useState('')
+        const [bilirubine, setBilirubine] = useState('')
+
+        // bilan gloabal
+
+        var nomMedecin = localStorage.getItem('username')
+        nomMedecin=nomMedecin.substring(1, nomMedecin.length-1)
+
+        const [lipidique, setLipidique]= useState({
+          createDate:date,
+          dtype:"BillanLipidique",
+          patientName:"",
+          patientAge:"",
+          doctorName: nomMedecin,
+          titre:'Billan lipidique',
+          creatinine,
+          triglycerides,
+          cholesterolTotal,
+          hdlCholesterol,
+          ldlCholesterol
+        })
+
+        const[hba, setHba] = useState({
+          createDate:date,
+          dtype:'HbA1c',
+          patientName:"",
+          patientAge:"",
+          doctorName: nomMedecin,
+          titre:'Billan Hba',
+          glycemie_a_jeun,
+          hemoglobine_glyquee
+
+        })
+
+        const [renal, setRenal]=useState({
+          createDate:date,
+          dtype:"rénal",
+          patientName:"",
+          patientAge:"",
+          doctorName: nomMedecin,
+          titre:'Billan renal',
+          pH,
+          densite,
+          glucose,
+          corps_cetoniques,
+          proteines,
+          sang,
+          leucocytes,
+          nitrites,
+          urobilinogene,
+          bilirubine
+
+        })
+
+        useEffect(()=> {
+          const idPatient=props.idPatient
+    
+        var token = localStorage.getItem('token')
+        token = token.substring(1,token.length-1)
+    
+        axios.get(`http://localhost:9191/service-auth/users/patient/${idPatient}`,{
+          headers:{
+            ContentType:'application/json',
+            Authorization: token 
+          }
+        })
+        .then((response)=>{
+          let data=response.data
+          console.log('data from billan', data)
+
+          // nom.current=data.nom
+          // age.current=data.age
+          setLipidique({...lipidique, patientName: data.nom, patientAge: data.age })
+          setHba({...hba, patientName: data.nom, patientAge: data.age })
+          setRenal({...renal, patientName: data.nom, patientAge: data.age })
+
+        })
+        .catch((err)=>console.log("error", err))
+      },[])
+
+
+
+
+console.log('rénal', renal)
+
+const saveHba = ()=>{
+  axios.post('http://localhost:9004/addHbA1c', hba)
+  .then((response)=>console.log('respone hba', response))
+  .catch((err)=>console.log(err))
+}
+
+const saveLipidique = ()=>{
+  axios.post('http://localhost:9004/addBL', lipidique)
+  .then((response)=>console.log('respone hba', response))
+  .catch((err)=>console.log(err))
+}
+
+const saveRenal = ()=>{
+  axios.post('http://localhost:9004/addRénal', hba)
+  .then((response)=>console.log('respone hba', renal))
+  .catch((err)=>console.log(err))
+}
+
+
+
+
+
+  const changeLipidique = (event) => {
+    setLipidique({
+      ...lipidique,
+      [event.target.name]: event.target.value
+    });
+  };
+
+  const changeRenal = (event) => {
+    setRenal({
+      ...renal,
       [event.target.name]: event.target.value
     });
   };
@@ -104,9 +217,10 @@ const Billans = () => {
                 fullWidth
                 label="creatinine"
                 name="creatinine"
-                onChange={handleChange}
-                required
-                value={values.lastName}
+                onChange={changeLipidique}
+              
+                // required
+                // value={values.lastName}
                 variant="outlined"
               />
             </Grid>
@@ -119,9 +233,10 @@ const Billans = () => {
                 fullWidth
                 label="triglycerides"
                 name="triglycerides"
-                onChange={handleChange}
-                required
-                value={values.firstName}
+             
+                onChange={changeLipidique}
+                // required
+                // value={values.firstName}
                 variant="outlined"
               />
             </Grid>
@@ -134,9 +249,10 @@ const Billans = () => {
                 fullWidth
                 label="cholesterolTotal"
                 name="cholesterolTotal"
-                onChange={handleChange}
-                required
-                value={values.email}
+               
+                onChange={changeLipidique}
+                // required
+                // value={values.email}
                 variant="outlined"
               />
             </Grid>
@@ -149,9 +265,10 @@ const Billans = () => {
                 fullWidth
                 label="hdlCholesterol"
                 name="hdlCholesterol"
-                onChange={handleChange}
-                type="number"
-                value={values.phone}
+                
+                onChange={changeLipidique}
+                // type="number"
+                // value={values.phone}
                 variant="outlined"
               />
             </Grid>
@@ -164,9 +281,8 @@ const Billans = () => {
                 fullWidth
                 label="ldlCholesterol"
                 name="ldlCholesterol"
-                onChange={handleChange}
-                required
-                value={values.adresse}
+                onChange={changeLipidique}
+               
                 variant="outlined"
               />
             </Grid>
@@ -181,6 +297,21 @@ const Billans = () => {
           </Grid>
         </CardContent>
         <Divider />
+        <Box
+          sx={{
+            display: 'flex',
+            justifyContent: 'flex-end',
+            p: 2
+          }}
+        >
+          <Button
+          onClick={saveLipidique}
+            color="primary"
+            variant="contained"
+          >
+            Save Lipidique
+          </Button>
+        </Box>
       </Card>
 
       <Card>
@@ -203,9 +334,13 @@ const Billans = () => {
                 fullWidth
                 label="glycemie a jeun"
                 name="glycemie_a_jeun"
-                onChange={handleChange}
-                required
-                value={values.lastName}
+                onChange={(event)=>{
+                  setGlycemie_a_jeun(event.target.value)
+                  setHba({...hba, glycemie_a_jeun:event.target.value })
+                }}
+                // onChange={handleChange}
+                // required
+                // value={values.lastName}
                 variant="outlined"
               />
             </Grid>
@@ -218,9 +353,13 @@ const Billans = () => {
                 fullWidth
                 label="hemoglobine glyquee"
                 name="hemoglobine_glyquee"
-                onChange={handleChange}
-                required
-                value={values.firstName}
+                onChange={(event)=>{
+                  setHemoglobine_glyquee(event.target.value)
+                  setHba({...hba, hemoglobine_glyquee:event.target.value })
+                }}
+                // onChange={handleChange}
+                // required
+                // value={values.firstName}
                 variant="outlined"
               />
             </Grid>
@@ -237,6 +376,24 @@ const Billans = () => {
           </Grid>
         </CardContent>
         <Divider />
+        <Box
+          sx={{
+            display: 'flex',
+            justifyContent: 'flex-end',
+            p: 2
+          }}
+        >
+          <Button
+          onClick={saveHba}
+            color="primary"
+            variant="contained"
+          >
+            Save HBA
+          </Button>
+        </Box>
+
+
+
       </Card>
 
       <Card>
@@ -259,9 +416,8 @@ const Billans = () => {
                 fullWidth
                 label="PH"
                 name="pH"
-                onChange={handleChange}
-                required
-                value={values.lastName}
+                onChange={changeRenal}
+               
                 variant="outlined"
               />
             </Grid>
@@ -274,9 +430,8 @@ const Billans = () => {
                 fullWidth
                 label="densite"
                 name="densite"
-                onChange={handleChange}
-                required
-                value={values.firstName}
+                onChange={changeRenal}
+               
                 variant="outlined"
               />
             </Grid>
@@ -289,9 +444,8 @@ const Billans = () => {
                 fullWidth
                 label="glucose"
                 name="glucose"
-                onChange={handleChange}
-                required
-                value={values.email}
+                onChange={changeRenal}
+               
                 variant="outlined"
               />
             </Grid>
@@ -304,9 +458,8 @@ const Billans = () => {
                 fullWidth
                 label="corps cetoniques"
                 name="corps_cetoniques"
-                onChange={handleChange}
-                type="number"
-                value={values.phone}
+                onChange={changeRenal}
+              
                 variant="outlined"
               />
             </Grid>
@@ -319,9 +472,8 @@ const Billans = () => {
                 fullWidth
                 label="proteines"
                 name="proteines"
-                onChange={handleChange}
-                required
-                value={values.adresse}
+                onChange={changeRenal}
+               
                 variant="outlined"
               />
             </Grid>
@@ -334,9 +486,8 @@ const Billans = () => {
                 fullWidth
                 label="sang"
                 name="sang"
-                onChange={handleChange}
-                required
-                value={values.lastName}
+                onChange={changeRenal}
+                
                 variant="outlined"
               />
             </Grid>
@@ -349,9 +500,8 @@ const Billans = () => {
                 fullWidth
                 label="leucocytes"
                 name="leucocytes"
-                onChange={handleChange}
-                required
-                value={values.firstName}
+                onChange={changeRenal}
+              
                 variant="outlined"
               />
             </Grid>
@@ -364,9 +514,8 @@ const Billans = () => {
                 fullWidth
                 label="nitrites"
                 name="nitrites"
-                onChange={handleChange}
-                required
-                value={values.email}
+                onChange={changeRenal}
+               
                 variant="outlined"
               />
             </Grid>
@@ -379,9 +528,9 @@ const Billans = () => {
                 fullWidth
                 label="urobilinogene"
                 name="urobilinogene"
-                onChange={handleChange}
+                onChange={changeRenal}
                 type="number"
-                value={values.phone}
+                
                 variant="outlined"
               />
             </Grid>
@@ -394,12 +543,11 @@ const Billans = () => {
                 fullWidth
                 label="bilirubine"
                 name="bilirubine"
-                onChange={handleChange}
-                required
-                value={values.adresse}
+                onChange={changeRenal}
+               
                 variant="outlined"
               />
-            </Grid>x  
+            </Grid>
          
 
             
@@ -414,6 +562,7 @@ const Billans = () => {
           }}
         >
           <Button
+            onClick={saveRenal}
             color="primary"
             variant="contained"
           >

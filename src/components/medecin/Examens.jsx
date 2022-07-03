@@ -34,13 +34,29 @@ const Examens = (props) => {
     const NumDeMachine=props.NumDeMachine
     const navigate = useNavigate()
 
-    const [values, setValues] = useState({
-        firstName: '',
-        lastName: '',
-        email: '',
-        phone: '',
-        adresse:"",
-        state:""
+    var d = new Date
+    var month = d.getMonth()+1
+    var day = d.getDate()
+    if (month<10){month = '0' + month}
+    if(day<10){day= '0'+day}
+    
+    var date = [d.getFullYear(),
+             month,
+            day,
+           ].join('-')
+
+    const [examen, setExamen] = useState({
+      createDate: date,
+       taille: '',
+       poid: '',
+        tension: '',
+        oscultation: '',
+        ordonnance:"",
+        rapport:"",
+        certificat:"",
+        evacuation:"",
+        orientation:""
+        
       });
 
 const showEcg = () =>{
@@ -48,51 +64,20 @@ const showEcg = () =>{
 
 }
 
-//   useEffect(()=>{
-
-//     var token = localStorage.getItem('token')
-//     token = token.substring(1,token.length-1)
-//     console.log("token from profil", token)
-//     var username = localStorage.getItem('username')
-//     username=username.substring(1,username.length-1)
-//     axios.get(`http://localhost:9191/service-auth/users/patient/${idPatient}`,{
-//       headers:{
-//         ContentType:'application/json',
-//         Authorization: token 
-//       }
-//     })
-//     .then((response)=>{
-//       var data=response.data
-//       console.log("patient response from dossier medical",data);
-//       setValues({
-//          firstName: data.prenom,
-//          lastName: data.nom,
-//           email: '',
-//           phone: data.telephone,
-//           state:""
-
-//       })
-
-//     })
-//     .catch((err)=>console.log("error", err))
-      
-   
-
-//   },[])
-
   const handleChange = (event) => {
-    setValues({
-      ...values,
+    setExamen({
+      ...examen,
       [event.target.name]: event.target.value
     });
   };
 
+  const saveExamen = ()=> {
+    axios.post('http://localhost:9003/EC/add', examen)
+    .then((response)=>console.log('reponse examen', response))
+    .catch((err)=>console.log('err dec' , err))
+  }
 
-
-
-
-
-
+  console.log('examen', examen)
 
   return (
 
@@ -124,8 +109,7 @@ const showEcg = () =>{
                 label="Poind"
                 name="poid"
                 onChange={handleChange}
-                required
-                value={values.lastName}
+                
                 variant="outlined"
               />
             </Grid>
@@ -139,8 +123,7 @@ const showEcg = () =>{
                 label="taille"
                 name="taille"
                 onChange={handleChange}
-                required
-                value={values.firstName}
+               
                 variant="outlined"
               />
             </Grid>
@@ -178,8 +161,7 @@ const showEcg = () =>{
                 label="palpitation pouls"
                 name="palpitation_pouls"
                 onChange={handleChange}
-                required
-                value={values.lastName}
+               
                 variant="outlined"
               />
             </Grid>
@@ -193,8 +175,7 @@ const showEcg = () =>{
                 label="oscultation"
                 name="oscultation"
                 onChange={handleChange}
-                required
-                value={values.firstName}
+              
                 variant="outlined"
               />
             </Grid>
@@ -208,8 +189,7 @@ const showEcg = () =>{
                 label="tension"
                 name="tension"
                 onChange={handleChange}
-                required
-                value={values.lastName}
+               
                 variant="outlined"
               />
             </Grid>
@@ -222,6 +202,21 @@ const showEcg = () =>{
           </Stack>
         </CardContent>
         <Divider />
+        <Box
+          sx={{
+            display: 'flex',
+            justifyContent: 'flex-end',
+            p: 2
+          }}
+        >
+          <Button
+          onClick={saveExamen}
+            color="primary"
+            variant="contained"
+          >
+            Save
+          </Button>
+        </Box>
       </Card>
     </form>
     </Box>

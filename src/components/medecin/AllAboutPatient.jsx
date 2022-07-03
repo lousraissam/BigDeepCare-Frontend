@@ -120,7 +120,7 @@ export default function AllAboutPatient() {
       </TabPanel>
 
       <TabPanel value={value} index={4}>
-        <Billans/>
+        <Billans idPatient={idPatient}/>
       </TabPanel>
 
       <TabPanel value={value} index={5}>
