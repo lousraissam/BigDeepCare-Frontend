@@ -72,7 +72,7 @@ const showEcg = () =>{
   };
 
   const saveExamen = ()=> {
-    axios.post('http://localhost:9003/EC/add', examen)
+    axios.post('http://localhost:9191/service-bp/EC/add', examen)
     .then((response)=>console.log('reponse examen', response))
     .catch((err)=>console.log('err dec' , err))
   }

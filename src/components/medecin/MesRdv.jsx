@@ -15,6 +15,9 @@ const columns = [
     { field: 'id', headerName: 'ID', width: 70 },
     // { field: 'firstName', headerName: 'Nom', width: 130 },
     // { field: 'lastName', headerName: 'Prénom', width: 130 },
+
+    { field: 'patientName', headerName: 'Nom du patient', width: 70 },
+
  
 
     {
@@ -56,6 +59,8 @@ const MesRdv = () => {
 
     const [consultations, setConsultations]= useState([])
 
+    const [patient, setPatient] = useState()
+
 
     const handleOnCellClick = (params) => {
       setSelected(params);
@@ -65,18 +70,40 @@ const MesRdv = () => {
 
    
     const rows=[]
+    const [noms, setNoms]=useState([])
 
     for(let i=0;i<consultations.length ;i++){
          let date = consultations[i].appointmentDate
          let time = consultations[i].appointmentDate
          date = date.toString().substring(0,10)
          time = time.toString().substring(11,16)
+         
 
          let idPatien = consultations[i].dm.patientId
+         var token = localStorage.getItem('token')
+         token = token.substring(1,token.length-1)
+         axios.get(`http://localhost:9191/service-auth/users/patient/${idPatien}`,{
+           headers:{
+             ContentType:'application/json',
+             Authorization: token 
+           }
+         })
+         .then((response)=>{
+            // setNoms(response.data.nom)
+        //    var data=
+         })
+        //  console.log("patient response from consultation",noms);
+
+
+        //  for(let j=0; j<noms.length; j++){
+
+         
+
           
-        let consultation = {id: i, Date: date, Time:time, state: consultations[i].state,  description:consultations[i].dm.description }
+        let consultation = {id: consultations[i].id, patientName:'', Date: date, Time:time, state: consultations[i].state,  description:consultations[i].dm.description }
        rows.push(consultation)
-    }
+    // }
+}
 
 
 
@@ -121,6 +148,8 @@ const MesRdv = () => {
 
     
             })
+
+
             
         })
 

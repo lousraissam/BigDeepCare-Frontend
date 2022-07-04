@@ -42,7 +42,7 @@ console.log('intérogatoire test', interogatoire)
     //   setChecked(event.target.checked);
     };
 const save = ()=>{
-    axios.post(`http://localhost:9191/service-dm/Consultation/${idConsultation}/addAnt`, interogatoire)
+    axios.post(`http://localhost:9191/service-dm/Consultation/${idConsultation}/addIntero`, interogatoire)
     .then((response)=>console.log(response))
     .catch((err)=> console.log(err))
 }

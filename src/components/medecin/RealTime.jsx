@@ -2,6 +2,19 @@
 //  * LightningChartJS example that showcases a simulated ECG signal.
 //  */
 // // Import LightningChartJS
+
+import {
+    Box,
+    Button,
+    Card,
+    CardContent,
+    CardHeader,
+    Divider,
+    Grid,
+    TextField,
+    Stack,
+    Typography
+  } from '@mui/material'
 import React, { useState, useEffect,useRef, useMemo  } from "react";
 // import {InfluxDB, Point} from 'https://unpkg.com/@influxdata/influxdb-client-browser/dist/index.browser.mjs'
 import { lightningChart, AxisScrollStrategies,AxisTickStrategies, Themes, Axis, Color } from '@arction/lcjs'
@@ -152,7 +165,58 @@ useEffect(() => {
    
   }, [data,result,  chartRef])
   return <div  className='chart'>
-      type of disease is {result[0]} with confidence of {result[1]}%
+    <Box>
+         <Stack  sx={{marginBottom:"1%", marginLeft:'9%'}} spacing={10} direction='row'>
+         <Card sx={{ minWidth: 275 }}>
+      <CardContent>
+        <Typography variant="h6" component="div" >
+          classe de l'ECG
+        </Typography>
+        <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
+        {result[0]}
+        </Typography>
+        <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom > avec confiance de
+        {result[1]}%
+        </Typography>
+        
+        </CardContent>
+        </Card>
+
+        <Card sx={{ minWidth: 275 }}>
+      <CardContent>
+        <Typography variant="h6" component="div" >
+          La tension
+        </Typography>
+        <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
+        14/09
+        </Typography>
+       
+        
+        </CardContent>
+        </Card>
+        <Card sx={{ minWidth: 275 }}>
+      <CardContent>
+        <Typography variant="h6" component="div" >
+         Temperature
+        </Typography>
+        <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
+        37
+        </Typography>
+     
+        
+        </CardContent>
+        </Card>
+  
+
+    {/* type of disease is {result[0]} with confidence of {result[1]}%
+    type of disease is {result[0]} with confidence of {result[1]}%
+    type of disease is {result[0]} with confidence of {result[1]}% */}
+
+
+    </Stack>
+
+
+    </Box>
 
 
   </div>

@@ -66,8 +66,8 @@ const [patient, setPatient]=useState()
    const [dossierMed, setDossierMed] = useState()
    const [consultation, setConsultation] = useState({
     interrogatoir: null,
-    createDate: "2022-07-01",
-    appointmentDate: "12/07/2022",
+    createDate: "2022-07-06",
+    appointmentDate: "",
     ecId: null,
     bpId: [],
     state: "EN_ATTENTE",

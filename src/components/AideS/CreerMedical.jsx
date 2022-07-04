@@ -105,7 +105,7 @@ const [medecin, setMedecin]=useState()
 
         setMedical({
           patientId:valuesPat.selectedPat,
-          createDate: "2022-07-01",
+          createDate: "2022-07-06",
           description: "un nouveau Patient avec des signes...",
           antecedents: []
 
@@ -164,7 +164,7 @@ const [medecin, setMedecin]=useState()
   useEffect(()=>{
     var token = localStorage.getItem('token')
     token = token.substring(1,token.length-1)
-    axios.get("http://localhost:9191/service-auth/aideS/patients",  {
+    axios.get("http://localhost:9191/service-dm/DM/patients_No_DM",  {
               headers:{
                 ContentType:'application/json',
                 Authorization: token 

@@ -21,7 +21,7 @@ const url = "http://localhost:8086";
 // |>last()
 //   `;
 
-const  GetEcg = (props) => {
+const  GetEcgHistory = (props) => {
 const [data, setData] = useState([]);
 
 const [result, setResult] = useState([]);
@@ -30,9 +30,9 @@ const deviceKey=location.state.NumDeMachine
 console.log("devece key from ... to getdata", deviceKey)
 var ecgF = []
 let query = `from(bucket: "ecg")
-|> range(start: -4h)
+|> range(start: -100h)
 |> filter(fn: (r) => r["_measurement"] == "ecg")
-|> filter(fn: (r) => r["_field"] == "record")
+|> filter(fn: (r) => r["_field"] == "value")
 |> filter(fn: (r) => r["patient_id"] == "${deviceKey}")
 |>last()
   `;
@@ -121,5 +121,5 @@ return (
 )
 }
 
-export default GetEcg
+export default GetEcgHistory
 

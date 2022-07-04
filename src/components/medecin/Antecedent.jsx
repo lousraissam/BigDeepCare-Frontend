@@ -27,9 +27,14 @@ const Antecedent = (props) => {
     const idPatient = props.idPatient
 
     const [antecedents, setAntecedents] = useState()
-    const [antecedent, setAntecedent] = useState([])
+    const [antecedent, setAntecedent] = useState([{
+      med:'',
+      cher:"",
+      fam:"",
+      hab:''
+    }])
 
-    const[medical, setMedical]=useState()
+    const[medical, setMedical]=useState({})
     const [medicaux, setMedicaux] = useState("");
     const [inputMed, setInputMed] = useState([{
        id: uuidv4(), 
@@ -41,10 +46,18 @@ const Antecedent = (props) => {
       axios.get(`http://localhost:9191/service-dm/DM/patient/${idPatient}`)
       .then((response)=>{
         setMedical(response.data)
-        setAntecedent(response.data.antecedents)
+        setAntecedent({
+          med:response.data.antecedents[0].nom,
+          cher:response.data.antecedents[1],
+          fam:response.data.antecedents[2],
+          hab:response.data.antecedents[3],
+        })
       })
       .catch((err)=>console.log(err))
     },[])
+
+    console.log("reeeeeeeeeest", antecedent)
+
     const addInputMed =()=>{
       setInputMed([...inputMed, { id: uuidv4(), medic: '' }])
     }
@@ -169,9 +182,10 @@ const Antecedent = (props) => {
     .catch((err)=>console.log(err))
   }
     console.log('antécédents', antecedents)
-  console.log('id from antécédent', idPatient)
-  console.log('new dossier med', medical)
+  // console.log('id from antécédent', idPatient)
+  console.log('new dossier med', medical.antecedents)
   // console.log('new  anté', antecedent[1])
+  // console.log('testgbnjz,fe', medical.antecedents[0].nom)
   
     return (
 
@@ -218,7 +232,7 @@ const Antecedent = (props) => {
                 //   setMedicaux(...medicaux, e.target.value)
                 // }
                 
-                // value={antecedent[0].nom}
+                // value={medical.antecedents[0].nom}
                 
                 variant="outlined"
               />
