@@ -285,7 +285,7 @@ import axios from 'axios'
             variant="contained"
             onClick={createAcoount}
           >
-            Créer compte
+            Créer  compte
           </Button>
         </Box>
       </Card>

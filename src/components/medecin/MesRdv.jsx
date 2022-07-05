@@ -82,6 +82,8 @@ const MesRdv = () => {
          let idPatien = consultations[i].dm.patientId
          var token = localStorage.getItem('token')
          token = token.substring(1,token.length-1)
+         var idMedecin=localStorage.getItem('id')
+
          axios.get(`http://localhost:9191/service-auth/users/patient/${idPatien}`,{
            headers:{
              ContentType:'application/json',
@@ -111,11 +113,16 @@ const MesRdv = () => {
     useEffect(()=>{
 
         let token= localStorage.getItem("token")
-        let id= localStorage.getItem("id")
+        let idMedecin= localStorage.getItem("id")
         token = token.substring(1,token.length-1)  
         const IdPatient = []
         const Idcons=[]
-        axios.get(`http://localhost:9191/service-dm/Consultation/`)
+        axios.get(`http://localhost:9191/service-dm/Consultation/medecin/${idMedecin}`,{ 
+        headers:{
+          ContentType:'application/json',
+          Authorization: token 
+        }
+      })
         .then((response)=>{
             var data=response.data
             console.log('consultaion', response)
@@ -125,29 +132,29 @@ const MesRdv = () => {
                 Idcons.push(consultations[i].dm.patientId)
                 setIdCons(Idcons)
             }
-            axios.get(`http://localhost:9191/service-auth/users/medecin/${id}/patients`, {
-                headers:{
-                    ContentType:'application/json',
-                    Authorization: token         
-                   }
-            })
+            // axios.get(`http://localhost:9191/service-auth/users/medecin/${id}/patients`, {
+            //     headers:{
+            //         ContentType:'application/json',
+            //         Authorization: token         
+            //        }
+            // })
             
-            .then((response)=>{
-                var data1=response.data
-                setMesPatients(data1)
-                for(let i=0; i<data1.length; i++){
-                    IdPatient.push(data1[i].id)
-                }
-                setIdP(IdPatient)
+            // .then((response)=>{
+            //     var data1=response.data
+            //     setMesPatients(data1)
+            //     for(let i=0; i<data1.length; i++){
+            //         IdPatient.push(data1[i].id)
+            //     }
+            //     setIdP(IdPatient)
 
-                for(let i=0; i<idP.length; i++){
-                    if(idCons.indexOf(idP[i]) !== -1){
+            //     for(let i=0; i<idP.length; i++){
+            //         if(idCons.indexOf(idP[i]) !== -1){
 
-                    }
-                }
+            //         }
+            //     }
 
     
-            })
+            // })
 
 
             

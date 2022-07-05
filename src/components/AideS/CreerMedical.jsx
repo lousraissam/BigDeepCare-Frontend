@@ -52,7 +52,7 @@ const [medecin, setMedecin]=useState()
 
     });
 
-    axios.get(`http://localhost:9191/service-auth/aideS/users/${valuesMed.selectedMed}`, {
+    axios.get(`http://localhost:9191/service-auth/aideS/users/${event.target.value}`, {
         headers:{
           ContentType:'application/json',
           Authorization: token 
@@ -64,10 +64,11 @@ const [medecin, setMedecin]=useState()
         console.log('medecin data', data)
       })
       .catch((err)=>console.log('error',err))
+      console.log('valus of medecins', event.target.value)
+
     
 
   };
-  console.log('valus of medecins', valuesMed)
 
   const handleChangePatient = (event) => {
     var token = localStorage.getItem('token')
@@ -78,7 +79,7 @@ const [medecin, setMedecin]=useState()
 
     });
 
-    axios.get(`http://localhost:9191/service-auth/aideS/users/${valuesPat.selectedPat}`, {
+    axios.get(`http://localhost:9191/service-auth/aideS/users/${event.target.value}`, {
         headers:{
           ContentType:'application/json',
           Authorization: token 
@@ -101,16 +102,17 @@ const [medecin, setMedecin]=useState()
                ].join('-')
              
           // date = date.toString()
+          console.log('patients data new', event.target.value )
+
           console.log("date", date)
 
         setMedical({
-          patientId:valuesPat.selectedPat,
-          createDate: "2022-07-06",
+          patientId:event.target.value,
+          createDate: date,
           description: "un nouveau Patient avec des signes...",
           antecedents: []
 
         })
-        console.log('patients data', data)
       })
       .catch((err)=>console.log('error',err))
    
@@ -338,7 +340,7 @@ console.log("meds", pats)
             variant="contained"
             onClick={affectPatientToMedecin}
           >
-            Créer compte
+            Créer un dossier
           </Button>
         </Box>
       </Card>

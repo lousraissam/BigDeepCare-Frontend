@@ -86,7 +86,7 @@ const [patient, setPatient]=useState()
 
     });
 
-    axios.get(`http://localhost:9191/service-auth/aideS/users/${valuesPat.selectedPat}`, {
+    axios.get(`http://localhost:9191/service-auth/aideS/users/${event.target.value}`, {
         headers:{
           ContentType:'application/json',
           Authorization: token 
@@ -96,7 +96,7 @@ const [patient, setPatient]=useState()
         let data = response.data
         setPatient(data)
 
-        axios.get(`http://localhost:9191/service-dm/DM/patient/${valuesPat.selectedPat}`)
+        axios.get(`http://localhost:9191/service-dm/DM/patient/${event.target.value}`)
         .then((response)=>{
             setDossierMed(response.data)
     console.log('dossier medical patient selected',response.data)

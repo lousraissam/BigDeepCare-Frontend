@@ -77,7 +77,7 @@ const Navbar = (props) => {
     return (
         <AppBar position='sticky'>
             <StyledToolbar>
-                <Typography variant='h6' sx={{display:{xs:"none", sm:'block'}}}>CHU
+                <Typography variant='h6' sx={{display:{xs:"none", sm:'block'}}}>BigDeepCare
                 </Typography>
                 <Pets sx={{display:{xs:"block", sm:"none"}}}></Pets>
 

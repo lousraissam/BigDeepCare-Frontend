@@ -149,19 +149,19 @@ const Billans = (props) => {
 console.log('rénal', renal)
 
 const saveHba = ()=>{
-  axios.post('http://localhost:9004/addHbA1c', hba)
+  axios.post('http://localhost:9191/service-bp/addHbA1c', hba)
   .then((response)=>console.log('respone hba', response))
   .catch((err)=>console.log(err))
 }
 
 const saveLipidique = ()=>{
-  axios.post('http://localhost:9004/addBL', lipidique)
+  axios.post('http://localhost:9191/service-bp/addBL', lipidique)
   .then((response)=>console.log('respone hba', response))
   .catch((err)=>console.log(err))
 }
 
 const saveRenal = ()=>{
-  axios.post('http://localhost:9004/addRénal', hba)
+  axios.post('http://localhost:9191/service-bp/addRénal', hba)
   .then((response)=>console.log('respone hba', renal))
   .catch((err)=>console.log(err))
 }

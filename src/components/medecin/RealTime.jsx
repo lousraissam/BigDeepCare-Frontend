@@ -27,9 +27,12 @@ const { createProgressiveFunctionGenerator } = require('@arction/xydata')
 const RealTime = (props) => {
     const {data} = props
     const {result} = props
+    const{bp}= props
+    const{temp}= props
+
     const chartRef = useRef(undefined)
 
-
+    console.log('bp from chart', bp)
 useEffect(() => {
 
 const chart = lightningChart().ChartXY({
@@ -88,8 +91,13 @@ chart.getDefaultAxisX()
 }, [])
 
 const [data1, setData1] = useState([]);
+const[bpState, setBpState]=useState()
+const[tempState, setTempState]=useState()
+
 
 useEffect(() => {
+  setBpState(bp)
+  setTempState(temp)
 
     // console.log("result from props", result)
     setData1(data)
@@ -163,7 +171,7 @@ useEffect(() => {
 
 
    
-  }, [data,result,  chartRef])
+  }, [data,result,bpState,  chartRef])
   return <div  className='chart'>
     <Box>
          <Stack  sx={{marginBottom:"1%", marginLeft:'9%'}} spacing={10} direction='row'>
@@ -178,6 +186,7 @@ useEffect(() => {
         <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom > avec confiance de
         {result[1]}%
         </Typography>
+       
         
         </CardContent>
         </Card>
@@ -188,7 +197,7 @@ useEffect(() => {
           La tension
         </Typography>
         <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-        14/09
+        {bpState}
         </Typography>
        
         
@@ -200,7 +209,7 @@ useEffect(() => {
          Temperature
         </Typography>
         <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-        37
+        {tempState}
         </Typography>
      
         

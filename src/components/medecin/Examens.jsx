@@ -51,11 +51,12 @@ const Examens = (props) => {
        poid: '',
         tension: '',
         oscultation: '',
-        ordonnance:"",
-        rapport:"",
-        certificat:"",
-        evacuation:"",
-        orientation:""
+        // ordonnance:"",
+        // rapport:"",
+        // certificat:"",
+        // evacuation:"",
+        // orientation:"",
+        palpitation_pouls:""
         
       });
 
@@ -72,8 +73,11 @@ const showEcg = () =>{
   };
 
   const saveExamen = ()=> {
-    axios.post('http://localhost:9191/service-bp/EC/add', examen)
-    .then((response)=>console.log('reponse examen', response))
+    axios.post('http://localhost:9191/service-ec/EC/add', examen)
+    .then((response)=>{console.log('reponse examen', response)
+    let idExamen = response.data.id
+    console.log('idExm', idExamen)
+  })
     .catch((err)=>console.log('err dec' , err))
   }
 
