@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState } from 'react';
 import {Box, Container, Stack, createTheme, ThemeProvider, Typography} from "@mui/material"
 import { DataGrid } from '@mui/x-data-grid';
@@ -12,8 +13,20 @@ import axios from 'axios'
 
 const columns = [
     { field: 'N', headerName: 'N', width: 70 },
+    { field: 'idConsultation', headerName: 'ID Consultation', width: 70 },
+    {
+      field: 'DateCreation',
+      headerName: 'Date du rendez-vous',
+      type:"date",
+        
+      width: 150,
+      
+    },
+
 
     { field: 'id', headerName: 'ID', width: 70 },
+
+
 
     { field: 'firstName', headerName: 'Nom', width: 130 },
     { field: 'lastName', headerName: 'Prénom', width: 130 },
@@ -23,22 +36,7 @@ const columns = [
       type: 'number',
       width: 90,
     },
-    {
-      field: 'DateCreation',
-      headerName: 'Date de création du dossier',
-      type:"date",
-        
-      width: 150,
-      
-    },
-    {
-        field: 'DateModification',
-        headerName: 'Date du dernière modification',
-        type:"date",
-       
-        width: 150,
-        
-      },
+  
       {
         field: 'NumdDeMachine',
         headerName: 'Num de machine',
@@ -54,6 +52,10 @@ const Mypatients = () => {
 
     const [patients, setPatients]=useState([])
     const [selected, setSelected] = useState(null);
+    const [consultations, setConsultations]= useState([])
+    const [idCons,setIdCons]=useState([])
+
+
 
 
     const handleOnCellClick = (params) => {
@@ -80,8 +82,8 @@ const Mypatients = () => {
 
     const rows=[]
  
-    for(let i=0;i<patients.length ;i++){
-        let patient = {N:i, id: patients[i].id, lastName: patients[i].prenom, firstName: patients[i].nom, age: patients[i].age, NumdDeMachine:patients[i].deviceKey }
+    for(let i=0;i<consultations.length ;i++){
+        let patient = {N:i, idConsultation: consultations[i].consultation.id,DateCreation:consultations[i].consultation.createDate , id:consultations[i].patient.id , lastName: consultations[i].patient.prenom, firstName: consultations[i].patient.nom, age: consultations[i].patient.age, NumdDeMachine:consultations[i].patient.deviceKey }
        rows.push(patient)
     }
  
@@ -117,6 +119,64 @@ const Mypatients = () => {
 
     },[])
 
+    useEffect(()=>{
+
+      let token= localStorage.getItem("token")
+      let idMedecin= localStorage.getItem("id")
+      token = token.substring(1,token.length-1)  
+      const IdPatient = []
+      const Idcons=[]
+      axios.get(`http://localhost:9191/service-dm/Consultation/medecin/${idMedecin}/all`,{ 
+      headers:{
+        ContentType:'application/json',
+        Authorization: token 
+      }
+    })
+      .then((response)=>{
+          var data=response.data
+          console.log('consultaion', response)
+          // setPatients(data)
+          setConsultations(data)
+          // for (let i=0; i<consultations.length; i++){
+          //     Idcons.push(consultations[i].dm.patientId)
+          //     setIdCons(Idcons)
+          // }
+          // axios.get(`http://localhost:9191/service-auth/users/medecin/${id}/patients`, {
+          //     headers:{
+          //         ContentType:'application/json',
+          //         Authorization: token         
+          //        }
+          // })
+          
+          // .then((response)=>{
+          //     var data1=response.data
+          //     setMesPatients(data1)
+          //     for(let i=0; i<data1.length; i++){
+          //         IdPatient.push(data1[i].id)
+          //     }
+          //     setIdP(IdPatient)
+
+          //     for(let i=0; i<idP.length; i++){
+          //         if(idCons.indexOf(idP[i]) !== -1){
+
+          //         }
+          //     }
+
+  
+          // })
+
+
+          
+      })
+
+      .catch((err)=>{
+          console.log('erroe',err)
+      
+    
+        })
+
+  },[])
+
 
 
     return (
@@ -146,3 +206,8 @@ const Mypatients = () => {
 };
 
 export default Mypatients;
+
+
+
+
+// ///////////////////////

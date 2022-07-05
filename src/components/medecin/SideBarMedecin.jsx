@@ -37,7 +37,7 @@ const Sidebar = ({children}) => {
           <Box position="fixed">
 
             <List >
-          <ListItem disablePadding>
+          {/* <ListItem disablePadding>
             <StyledNavLink to= '/dashboard-medecin'>
             <ListItemButton >
               <ListItemIcon>
@@ -46,23 +46,14 @@ const Sidebar = ({children}) => {
               <ListItemText primary="Dashboard" />
             </ListItemButton>
             </StyledNavLink>
-          </ListItem>
-          <Divider/>
-          <StyledNavLink to='/dashboard-medecin/mes-patients'>
-          <ListItem disablePadding>
-            <ListItemButton >
-              <ListItemIcon>
-                <GroupsIcon />
-              </ListItemIcon>
-              <ListItemText primary="Mes Patients" />
-            </ListItemButton>
-          </ListItem>
-          </StyledNavLink >
+          </ListItem> */}
+          {/* <Divider/> */}
+        
 
 
      
 
-          <ListItem disablePadding>
+          {/* <ListItem disablePadding>
             <StyledNavLink to="/dashboard-medecin/examen-clinique">
             <ListItemButton >
               <ListItemIcon>
@@ -71,7 +62,7 @@ const Sidebar = ({children}) => {
               <ListItemText primary="Examen clinique" />
             </ListItemButton>
             </StyledNavLink>
-          </ListItem>
+          </ListItem> */}
 
           <ListItem disablePadding>
             <StyledNavLink to="/dashboard-medecin/mes-rdv">
@@ -79,12 +70,22 @@ const Sidebar = ({children}) => {
               <ListItemIcon>
                 <CalendarMonthIcon />
               </ListItemIcon>
-              <ListItemText primary="Mes rendez vous" />
+              <ListItemText primary="Mes Patient" />
             </ListItemButton>
             </StyledNavLink>
           </ListItem>
+          
+          <StyledNavLink to='/dashboard-medecin/mes-patients'>
+          <ListItem disablePadding>
+            <ListItemButton >
+              <ListItemIcon>
+                <GroupsIcon />
+              </ListItemIcon>
+              <ListItemText primary="Mes Rendez-vous" />
+            </ListItemButton>
+          </ListItem>
+          </StyledNavLink >
           <Divider/>
-
 
       
           <ListItem disablePadding>

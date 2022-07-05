@@ -20,17 +20,17 @@ import { useLocation } from "react-router-dom";
 
 
 const Billans = (props) => {
- const  idConsultation=props.idConsultation
-    const [consultation, setConsultation] = useState({})
-  
-      useEffect(()=>{
-        axios.get(`http://localhost:9191/service-dm/Consultation/${idConsultation}`)
-        .then((response)=>{
-          setConsultation(response.data)
-          
-        })
+  const idPatient=props.idPatient
+  const [billan, setBillan]=useState()
+    const [values, setValues] = useState({
+        firstName: '',
+        lastName: '',
+        email: '',
+        phone: '',
+        adresse:"",
+        state:""
+      });
     
-      },[])
     
 
     
@@ -148,43 +148,25 @@ const Billans = (props) => {
 
 
 
-console.log('rénal', renal)
+// console.log('rénal', renal)
 
-const saveHba = ()=>{
-  axios.post('http://localhost:9191/service-bp/addHbA1c', hba)
-  .then((response)=>{
-    console.log('respone lipidique', response)
-    let idBilan= response.data.id
-    axios.put('http://localhost:9191/service-dm/Consultation/update',{...consultation, bpId:[idBilan]} )
-    .then((response)=>console.log('response save bilan', response))
-    .catch((err)=>console.log('err', err))
-  })  .catch((err)=>console.log(err))
-}
+// const saveHba = ()=>{
+//   axios.post('http://localhost:9191/service-bp/addHbA1c', hba)
+//   .then((response)=>console.log('respone hba', response))
+//   .catch((err)=>console.log(err))
+// }
 
-const saveLipidique = ()=>{
-  axios.post('http://localhost:9004/addBL', lipidique)
-  .then((response)=>{
-    console.log('respone lipidique', response)
-    let idBilan= response.data.id
-    axios.put('http://localhost:9191/service-dm/Consultation/update',{...consultation, bpId:[idBilan]} )
-    .then((response)=>console.log('response save bilan', response))
-    .catch((err)=>console.log('err', err))
-  })
-  
-  .catch((err)=>console.log(err))
-}
+// const saveLipidique = ()=>{
+//   axios.post('http://localhost:9191/service-bp/addBL', lipidique)
+//   .then((response)=>console.log('respone hba', response))
+//   .catch((err)=>console.log(err))
+// }
 
-const saveRenal = ()=>{
-  axios.post('http://localhost:9191/service-bp/addRénal', renal)
-  .then((response)=>{
-    console.log('respone lipidique', response)
-    let idBilan= response.data.id
-    axios.put('http://localhost:9191/service-dm/Consultation/update',{...consultation, bpId:[idBilan]} )
-    .then((response)=>console.log('response save bilan', response))
-    .catch((err)=>console.log('err', err))
-  })
-  .catch((err)=>console.log(err))
-}
+// const saveRenal = ()=>{
+//   axios.post('http://localhost:9191/service-bp/addRénal', hba)
+//   .then((response)=>console.log('respone hba', renal))
+//   .catch((err)=>console.log(err))
+// }
 
 
 
@@ -203,6 +185,17 @@ const saveRenal = ()=>{
       [event.target.name]: event.target.value
     });
   };
+
+  useEffect(()=>{
+    axios.get(`http://localhost:9191/service-dm/Consultation/Patient/${idPatient}/BP`)
+    .then((response)=>{
+      setBillan(response.data[0])
+    })
+    .catch((err)=>console.log('err bilan', err))
+
+  },[])
+
+  console.log('response bilaaaaaaaaan', billan)
 
 
 
@@ -234,10 +227,12 @@ const saveRenal = ()=>{
               xs={12}
             >
               <TextField
+              disabled
                 fullWidth
-                label="creatinine"
+                // label="creatinine"
                 name="creatinine"
-                onChange={changeLipidique}
+                value={billan?.creatinine}
+                // onChange={changeLipidique}
               
                 // required
                 // value={values.lastName}
@@ -250,11 +245,13 @@ const saveRenal = ()=>{
               xs={12}
             >
               <TextField
+              disabled
                 fullWidth
-                label="triglycerides"
+                // label="triglycerides"
                 name="triglycerides"
+                value={billan?.triglycerides}
              
-                onChange={changeLipidique}
+                // onChange={changeLipidique}
                 // required
                 // value={values.firstName}
                 variant="outlined"
@@ -266,8 +263,11 @@ const saveRenal = ()=>{
               xs={12}
             >
               <TextField
+              disabled
                 fullWidth
-                label="cholesterolTotal"
+                // label="cholesterolTotal"
+                value={billan?.cholesterolTotal}
+
                 name="cholesterolTotal"
                
                 onChange={changeLipidique}
@@ -282,11 +282,14 @@ const saveRenal = ()=>{
               xs={12}
             >
               <TextField
+              disabled
                 fullWidth
-                label="hdlCholesterol"
+                // label="hdlCholesterol"
+                value={billan?.hdlCholesterol}
+
                 name="hdlCholesterol"
                 
-                onChange={changeLipidique}
+                // onChange={changeLipidique}
                 // type="number"
                 // value={values.phone}
                 variant="outlined"
@@ -298,10 +301,13 @@ const saveRenal = ()=>{
               xs={12}
             >
               <TextField
+              disabled
                 fullWidth
-                label="ldlCholesterol"
+                // label="ldlCholesterol"
+                value={billan?.ldlCholesterol}
+
                 name="ldlCholesterol"
-                onChange={changeLipidique}
+                // onChange={changeLipidique}
                
                 variant="outlined"
               />
@@ -324,13 +330,7 @@ const saveRenal = ()=>{
             p: 2
           }}
         >
-          <Button
-          onClick={saveLipidique}
-            color="primary"
-            variant="contained"
-          >
-            Save Lipidique
-          </Button>
+         
         </Box>
       </Card>
 
@@ -351,13 +351,16 @@ const saveRenal = ()=>{
               xs={12}
             >
               <TextField
+              disabled
                 fullWidth
-                label="glycemie a jeun"
+                // label="glycemie a jeun"
                 name="glycemie_a_jeun"
-                onChange={(event)=>{
-                  setGlycemie_a_jeun(event.target.value)
-                  setHba({...hba, glycemie_a_jeun:event.target.value })
-                }}
+                value={billan?.glycemie_a_jeun}
+
+                // onChange={(event)=>{
+                //   setGlycemie_a_jeun(event.target.value)
+                //   setHba({...hba, glycemie_a_jeun:event.target.value })
+                // }}
                 // onChange={handleChange}
                 // required
                 // value={values.lastName}
@@ -370,13 +373,15 @@ const saveRenal = ()=>{
               xs={12}
             >
               <TextField
+              disabled
                 fullWidth
-                label="hemoglobine glyquee"
+                // label="hemoglobine glyquee"
+                value={billan?.hemoglobine_glyquee}
                 name="hemoglobine_glyquee"
-                onChange={(event)=>{
-                  setHemoglobine_glyquee(event.target.value)
-                  setHba({...hba, hemoglobine_glyquee:event.target.value })
-                }}
+                // onChange={(event)=>{
+                //   setHemoglobine_glyquee(event.target.value)
+                //   setHba({...hba, hemoglobine_glyquee:event.target.value })
+                // }}
                 // onChange={handleChange}
                 // required
                 // value={values.firstName}
@@ -403,13 +408,7 @@ const saveRenal = ()=>{
             p: 2
           }}
         >
-          <Button
-          onClick={saveHba}
-            color="primary"
-            variant="contained"
-          >
-            Save HBA
-          </Button>
+      
         </Box>
 
 
@@ -433,10 +432,13 @@ const saveRenal = ()=>{
               xs={12}
             >
               <TextField
+              disabled
                 fullWidth
-                label="PH"
+                // label="PH"
                 name="pH"
-                onChange={changeRenal}
+                // onChange={changeRenal}
+                value={billan?.ph}
+
                
                 variant="outlined"
               />
@@ -447,10 +449,12 @@ const saveRenal = ()=>{
               xs={12}
             >
               <TextField
+              disabled
                 fullWidth
-                label="densite"
+                // label="densite"
                 name="densite"
-                onChange={changeRenal}
+                value={billan?.densite}
+                // onChange={changeRenal}
                
                 variant="outlined"
               />
@@ -461,10 +465,13 @@ const saveRenal = ()=>{
               xs={12}
             >
               <TextField
+              disabled
                 fullWidth
-                label="glucose"
+                // label="glucose"
                 name="glucose"
-                onChange={changeRenal}
+                // onChange={changeRenal}
+                value={billan?.glucose}
+
                
                 variant="outlined"
               />
@@ -475,10 +482,12 @@ const saveRenal = ()=>{
               xs={12}
             >
               <TextField
+              disabled
                 fullWidth
-                label="corps cetoniques"
+                // label="corps cetoniques"
                 name="corps_cetoniques"
-                onChange={changeRenal}
+                // onChange={changeRenal}
+                value={billan?.corps_cetoniques}
               
                 variant="outlined"
               />
@@ -489,10 +498,13 @@ const saveRenal = ()=>{
               xs={12}
             >
               <TextField
+              disabled
                 fullWidth
-                label="proteines"
+                // label="proteines"
                 name="proteines"
-                onChange={changeRenal}
+                // onChange={changeRenal}
+                value={billan?.proteines}
+
                
                 variant="outlined"
               />
@@ -503,10 +515,14 @@ const saveRenal = ()=>{
               xs={12}
             >
               <TextField
+              disabled
                 fullWidth
-                label="sang"
+                // label="sang"
                 name="sang"
-                onChange={changeRenal}
+                // onChange={changeRenal}
+                value={billan?.sang}
+
+                
                 
                 variant="outlined"
               />
@@ -517,10 +533,13 @@ const saveRenal = ()=>{
               xs={12}
             >
               <TextField
+              disabled
                 fullWidth
-                label="leucocytes"
+                // label="leucocytes"
                 name="leucocytes"
-                onChange={changeRenal}
+                // onChange={changeRenal}
+                value={billan?.leucocytes}
+
               
                 variant="outlined"
               />
@@ -531,10 +550,13 @@ const saveRenal = ()=>{
               xs={12}
             >
               <TextField
+              disabled
                 fullWidth
-                label="nitrites"
+                // label="nitrites"
                 name="nitrites"
-                onChange={changeRenal}
+                value={billan?.nitrites}
+
+                // onChange={changeRenal}
                
                 variant="outlined"
               />
@@ -545,11 +567,14 @@ const saveRenal = ()=>{
               xs={12}
             >
               <TextField
+              disabled
                 fullWidth
-                label="urobilinogene"
-                name="urobilinogene"
-                onChange={changeRenal}
+                // label="urobilinogene"
+                // name="urobilinogene"
+                // onChange={changeRenal}
                 type="number"
+                value={billan?.urobilinogene}
+
                 
                 variant="outlined"
               />
@@ -560,10 +585,13 @@ const saveRenal = ()=>{
               xs={12}
             >
               <TextField
+              disabled
                 fullWidth
-                label="bilirubine"
+                // label="bilirubine"
                 name="bilirubine"
-                onChange={changeRenal}
+                value={billan?.bilirubine}
+
+                // onChange={changeRenal}
                
                 variant="outlined"
               />
@@ -581,13 +609,7 @@ const saveRenal = ()=>{
             p: 2
           }}
         >
-          <Button
-            onClick={saveRenal}
-            color="primary"
-            variant="contained"
-          >
-            Save details
-          </Button>
+        
         </Box>
       </Card>
     </form>

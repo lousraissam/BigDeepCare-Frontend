@@ -34,7 +34,7 @@ const deviceKey=location.state.NumDeMachine
 console.log("devece key from ... to getdata", deviceKey)
 var ecgF = []
 let query = `from(bucket: "ecg")
-|> range(start: -60h)
+|> range(start: -15h)
 |> filter(fn: (r) => r["_measurement"] == "ecg")
 |> filter(fn: (r) => r["_field"] == "record")
 |> filter(fn: (r) => r["patient_id"] == "${deviceKey}")
@@ -42,7 +42,7 @@ let query = `from(bucket: "ecg")
   `;
 
   let querybp = `from(bucket: "ecg")
-  |> range(start: -60h)
+  |> range(start: -20h)
   |> filter(fn: (r) => r["_measurement"] == "bp")
   |> filter(fn: (r) => r["_field"] == "record")
   |> filter(fn: (r) => r["patient_id"] == "${deviceKey}")
@@ -50,7 +50,7 @@ let query = `from(bucket: "ecg")
     `;
   
     let querytemp = `from(bucket: "ecg")
-    |> range(start: -60h)
+    |> range(start: -20h)
     |> filter(fn: (r) => r["_measurement"] == "temp")
     |> filter(fn: (r) => r["_field"] == "record")
     |> filter(fn: (r) => r["patient_id"] == "${deviceKey}")

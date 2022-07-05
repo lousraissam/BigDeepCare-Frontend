@@ -4,16 +4,16 @@ import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Typography from '@mui/material/Typography';
 import {Box, Stack, AppBar} from '@mui/material';
-import Navbar from '../Navbar';
-import Sidebar from './SideBarMedecin';
-import DossierMedical from './DossierMedical'
+import Navbar from '../../Navbar';
+import Sidebar from '../SideBarMedecin';
+// import DossierMedical from './DossierMedical'
 import ExamenClinique from './ExamenClinique';
 import Antecedent from './Antecedent';
 import PatientInfo from './PatientInfo';
 import Interogatoire from './Interogatoire';
 import Examens from './Examens';
 import Billans from './Billans';
-import Papiers from './Papiers';
+import Papiers from '../Papiers';
 
 
 import { useEffect, useState } from 'react';
@@ -52,7 +52,7 @@ function a11yProps(index) {
   };
 }
 
-export default function AllAboutPatient() {
+export default function AllAboutPatienthistory() {
     const location = useLocation();
     const idPatient=location.state.idPatient
     const [idConsultation, setIdconsultation] = useState()
@@ -115,12 +115,12 @@ export default function AllAboutPatient() {
         <Interogatoire idConsultation={idConsultation}></Interogatoire>
       </TabPanel>
       <TabPanel  value={value} index={3}>
-        <Examens NumDeMachine={NumDeMachine} idConsultation={idConsultation}/>
+        <Examens idConsultation={idConsultation} NumDeMachine={NumDeMachine}/>
 
       </TabPanel>
 
       <TabPanel value={value} index={4}>
-        <Billans idConsultation={idConsultation} idPatient={idPatient}/>
+        <Billans idPatient={idPatient}/>
       </TabPanel>
 
       {/* <TabPanel value={value} index={5}>

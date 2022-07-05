@@ -183,8 +183,8 @@ useEffect(() => {
         <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
         {result[0]}
         </Typography>
-        <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom > avec confiance de
-        {result[1]}%
+        <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom >avec confiance de
+        <Typography sx={{ fontSize: 20  }}>{result[1]} %</Typography> 
         </Typography>
        
         

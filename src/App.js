@@ -26,6 +26,13 @@ import AllMedecins from './components/AideS/AllMedecins';
 import AllPatients from './components/AideS/AllPatients';
 import MesRdv from './components/medecin/MesRdv';
 
+import AllAboutPatienthistory  from './components/medecin/HistoryConsultations/AllAboutPatient';
+// import {Antecedent as ant} from './components/medecin/HistoryConsultations/Antecedent'
+// import {Billans as bilan} from './components/medecin/HistoryConsultations/Billans';
+// import {ExamenClinique as examencl} from './components/medecin/HistoryConsultations/ExamenClinique';
+// import {PatientInfo as infoPatien} from './components/medecin/HistoryConsultations/PatientInfo';
+// import {Interogatoire as intr} from './components/medecin/Interogatoire';
+
 
 import { ImageUpload } from './components/medecin/ImageUpload';
 class App extends Component{
@@ -69,6 +76,8 @@ class App extends Component{
       <Route exact={true} path="/dashboard-medecin/mes-rdv" element={<MesRdv />} />
       <Route exact={true} path="/mon-profil" element={<AccountProfileDetails />} />
       <Route exact={true} path="/dashboard-medecin/patient" element={<AllAboutPatient />} />
+      <Route exact={true} path="/dashboard-medecin/patient/consultations" element={<AllAboutPatienthistory />} />
+
 
 
 

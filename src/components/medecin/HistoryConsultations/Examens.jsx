@@ -16,8 +16,8 @@ import {
   } from '@mui/material';
   
   
-  import bgEcg from '../../images/consulteECG.jpg'
-  import ecgimg from '../../images/ec.png'
+  import bgEcg from '../../../images/consulteECG.jpg'
+  import ecgimg from '../../../images/ec.png'
   import { useEffect, useState } from 'react';
   import axios from 'axios'
 import { useLocation, useNavigate } from "react-router-dom";
@@ -32,8 +32,8 @@ const StyledNavLink = styled(NavLink)(({ theme }) => ({
 const Examens = (props) => {
     const location = useLocation();
     const NumDeMachine=props.NumDeMachine
-    const idConsultation=props.idConsultation
-    const [consultation, setConsultation]=useState()
+    const idCons = props.idConsultation
+    console.log('from hist', idCons)
     const navigate = useNavigate()
 
     var d = new Date
@@ -62,6 +62,8 @@ const Examens = (props) => {
         
       });
 
+      const [examenclinique, setExamenclinique]=useState({})
+
 const showEcg = () =>{
     navigate("/dashboard-medecin/ecg", { state: { NumDeMachine: NumDeMachine } })
 
@@ -74,32 +76,17 @@ const showEcg = () =>{
     });
   };
 
-  useEffect(()=>{
-    axios.get(`http://localhost:9191/service-dm/Consultation/${idConsultation}`)
-    .then((response)=>{
-      setConsultation(response.data)
-      
-    })
-
-  },[])
-
-  const saveExamen = ()=> {
-    axios.post('http://localhost:9191/service-ec/EC/add', examen)
-    .then((response)=>{console.log('reponse examen', response)
-    let idExamen = response.data.id
-    axios.put('http://localhost:9191/service-dm/Consultation/update',{...consultation, ecId:idExamen} )
-    .then((response)=>console.log('response save EXmclinique', response))
-    .catch((err)=>console.log('err', err))
-    // // setConsultation()
-    // console.log('idExm', idExamen)
+useEffect(()=>{
+  axios.get(`http://localhost:9191/service-dm/Consultation/${idCons}`)
+  .then((response)=>{
+    axios.get(`http://localhost:9191/service-ec/EC/${response.data.ecId}`)
+    .then((response)=>setExamenclinique(response.data))
+    .catch((err)=>console.log(err))
     
-    
-    
+  
   })
-    .catch((err)=>console.log('err dec' , err))
-  }
+},[])
 
-  console.log('examen', examen)
 
   return (
 
@@ -128,9 +115,10 @@ const showEcg = () =>{
             >
               <TextField
                 fullWidth
-                label="Poind"
+                // label="Poind"
                 name="poid"
-                onChange={handleChange}
+                value={examenclinique?.poid}
+                disabled
                 
                 variant="outlined"
               />
@@ -142,10 +130,10 @@ const showEcg = () =>{
             >
               <TextField
                 fullWidth
-                label="taille"
+                // label="taille"
                 name="taille"
-                onChange={handleChange}
-               
+                value={examenclinique?.taille}
+                disabled
                 variant="outlined"
               />
             </Grid>
@@ -180,9 +168,10 @@ const showEcg = () =>{
             >
               <TextField
                 fullWidth
-                label="palpitation pouls"
+                // label="palpitation pouls"
                 name="palpitation_pouls"
-                onChange={handleChange}
+                value={examenclinique?.palpitation_pouls}
+                disabled
                
                 variant="outlined"
               />
@@ -194,9 +183,11 @@ const showEcg = () =>{
             >
               <TextField
                 fullWidth
-                label="oscultation"
+                // label="oscultation"
                 name="oscultation"
-                onChange={handleChange}
+                value={examenclinique?.oscultation}
+                disabled
+                
               
                 variant="outlined"
               />
@@ -208,9 +199,10 @@ const showEcg = () =>{
             >
               <TextField
                 fullWidth
-                label="tension"
+                // label="tension"
                 name="tension"
-                onChange={handleChange}
+                value={examenclinique?.tension}
+                disabled
                
                 variant="outlined"
               />
@@ -231,13 +223,13 @@ const showEcg = () =>{
             p: 2
           }}
         >
-          <Button
+          {/* <Button
           onClick={saveExamen}
             color="primary"
             variant="contained"
           >
             Save
-          </Button>
+          </Button> */}
         </Box>
       </Card>
     </form>
@@ -246,7 +238,7 @@ const showEcg = () =>{
     </Stack>
 
     
-     <Stack  style={{marginTop:'4%'}} direction="row" spacing={15} >
+     {/* <Stack  style={{marginTop:'4%'}} direction="row" spacing={15} >
 
              <Box>
 
@@ -290,7 +282,7 @@ const showEcg = () =>{
 </StyledNavLink>
 </Box>
 </Stack>
-
+ */}
 
 
         </Box>
