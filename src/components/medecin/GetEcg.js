@@ -9,17 +9,6 @@ const token =  "H417NO73jCvZXl9cInFHAjZp1v8fq2A3GcqENXMC2YCekgfmKlywL2qDcbSjmWg5
 const org = "esi-sna";
 const bucket = "test";
 const url = "http://localhost:8086";
-// |> aggregateWindow(every: 1s, fn: last, createEmpty: false)   |> range(start: -4s)   |> yield(name: "last")
-
-
-
-// let query = `from(bucket: "ecg")
-// |> range(start: -100h)
-// |> filter(fn: (r) => r["_measurement"] == "ecg")
-// |> filter(fn: (r) => r["_field"] == "value")
-// |> filter(fn: (r) => r["patient_id"] == "p2")
-// |>last()
-//   `;
 
 const  GetEcg = (props) => {
 const [data, setData] = useState([]);
@@ -34,7 +23,7 @@ const deviceKey=location.state.NumDeMachine
 console.log("devece key from ... to getdata", deviceKey)
 var ecgF = []
 let query = `from(bucket: "ecg")
-|> range(start: -60h)
+|> range(start: -20h)
 |> filter(fn: (r) => r["_measurement"] == "ecg")
 |> filter(fn: (r) => r["_field"] == "record")
 |> filter(fn: (r) => r["patient_id"] == "${deviceKey}")

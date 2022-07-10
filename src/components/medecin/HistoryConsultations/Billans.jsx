@@ -16,25 +16,12 @@ import {
   
   import { useEffect, useState, useRef } from 'react';
   import axios from 'axios'
-import { useLocation } from "react-router-dom";
 
 
 const Billans = (props) => {
   const idPatient=props.idPatient
   const [billan, setBillan]=useState()
-    const [values, setValues] = useState({
-        firstName: '',
-        lastName: '',
-        email: '',
-        phone: '',
-        adresse:"",
-        state:""
-      });
-    
-    
-
-    
-
+   
       var d = new Date
       var month = d.getMonth()+1
       var day = d.getDate()
@@ -134,9 +121,6 @@ const Billans = (props) => {
         .then((response)=>{
           let data=response.data
           console.log('data from billan', data)
-
-          // nom.current=data.nom
-          // age.current=data.age
           setLipidique({...lipidique, patientName: data.nom, patientAge: data.age })
           setHba({...hba, patientName: data.nom, patientAge: data.age })
           setRenal({...renal, patientName: data.nom, patientAge: data.age })
@@ -144,31 +128,6 @@ const Billans = (props) => {
         })
         .catch((err)=>console.log("error", err))
       },[])
-
-
-
-
-// console.log('rénal', renal)
-
-// const saveHba = ()=>{
-//   axios.post('http://localhost:9191/service-bp/addHbA1c', hba)
-//   .then((response)=>console.log('respone hba', response))
-//   .catch((err)=>console.log(err))
-// }
-
-// const saveLipidique = ()=>{
-//   axios.post('http://localhost:9191/service-bp/addBL', lipidique)
-//   .then((response)=>console.log('respone hba', response))
-//   .catch((err)=>console.log(err))
-// }
-
-// const saveRenal = ()=>{
-//   axios.post('http://localhost:9191/service-bp/addRénal', hba)
-//   .then((response)=>console.log('respone hba', renal))
-//   .catch((err)=>console.log(err))
-// }
-
-
 
 
 
@@ -232,10 +191,7 @@ const Billans = (props) => {
                 // label="creatinine"
                 name="creatinine"
                 value={billan?.creatinine}
-                // onChange={changeLipidique}
-              
-                // required
-                // value={values.lastName}
+               
                 variant="outlined"
               />
             </Grid>
@@ -251,9 +207,6 @@ const Billans = (props) => {
                 name="triglycerides"
                 value={billan?.triglycerides}
              
-                // onChange={changeLipidique}
-                // required
-                // value={values.firstName}
                 variant="outlined"
               />
             </Grid>
@@ -289,9 +242,7 @@ const Billans = (props) => {
 
                 name="hdlCholesterol"
                 
-                // onChange={changeLipidique}
-                // type="number"
-                // value={values.phone}
+               
                 variant="outlined"
               />
             </Grid>
@@ -357,13 +308,7 @@ const Billans = (props) => {
                 name="glycemie_a_jeun"
                 value={billan?.glycemie_a_jeun}
 
-                // onChange={(event)=>{
-                //   setGlycemie_a_jeun(event.target.value)
-                //   setHba({...hba, glycemie_a_jeun:event.target.value })
-                // }}
-                // onChange={handleChange}
-                // required
-                // value={values.lastName}
+               
                 variant="outlined"
               />
             </Grid>
@@ -378,13 +323,7 @@ const Billans = (props) => {
                 // label="hemoglobine glyquee"
                 value={billan?.hemoglobine_glyquee}
                 name="hemoglobine_glyquee"
-                // onChange={(event)=>{
-                //   setHemoglobine_glyquee(event.target.value)
-                //   setHba({...hba, hemoglobine_glyquee:event.target.value })
-                // }}
-                // onChange={handleChange}
-                // required
-                // value={values.firstName}
+              
                 variant="outlined"
               />
             </Grid>
@@ -434,9 +373,7 @@ const Billans = (props) => {
               <TextField
               disabled
                 fullWidth
-                // label="PH"
                 name="pH"
-                // onChange={changeRenal}
                 value={billan?.ph}
 
                

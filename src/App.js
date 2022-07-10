@@ -27,35 +27,16 @@ import AllPatients from './components/AideS/AllPatients';
 import MesRdv from './components/medecin/MesRdv';
 
 import AllAboutPatienthistory  from './components/medecin/HistoryConsultations/AllAboutPatient';
-// import {Antecedent as ant} from './components/medecin/HistoryConsultations/Antecedent'
-// import {Billans as bilan} from './components/medecin/HistoryConsultations/Billans';
-// import {ExamenClinique as examencl} from './components/medecin/HistoryConsultations/ExamenClinique';
-// import {PatientInfo as infoPatien} from './components/medecin/HistoryConsultations/PatientInfo';
-// import {Interogatoire as intr} from './components/medecin/Interogatoire';
+
 
 
 import { ImageUpload } from './components/medecin/ImageUpload';
 class App extends Component{
   
-//  state = {
-//  monsters: [],
-//  searchFiled: ""
 
-// }
-
-//   componentDidMount(){
-//     fetch("https://jsonplaceholder.typicode.com/users")
-//     .then(response => response.json())
-//     .then(users => this.setState({monsters : users}))
-//   }
-//   handleChange=(e)=> {
-//      this.setState({searchFiled:e.target.value}, () => console.log(this.state))
-//     }
   render(){
 
-    // const { monsters, searchFiled} = this.state
-    // const filterMonster = monsters.filter(monster => monster.name.toLowerCase().includes(searchFiled.toLowerCase()))
-
+   
     return(
      
     <div>
@@ -109,14 +90,6 @@ class App extends Component{
 
       </Routes>
 
-
-   
-    {/* <Search handleChange={this.handleChange}
-      
-
-        ></Search>
-   
-      <Cards monsters = {filterMonster}></Cards> */}
     </div>
     )
   }

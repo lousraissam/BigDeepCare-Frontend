@@ -29,17 +29,10 @@ import axios from 'axios'
 
 
  const AddRdv = () => {
-//  to get liste of medecins and patients
     const [patients, setPatients]=useState([])
-    // const [medecins, setMedecins]=useState([])
-//  to affect patient to medecin
+   
 const [patient, setPatient]=useState()
-// const [medecin, setMedecin]=useState()
 
-    
-//   const [valuesMed, setValuesMed] = useState({
-//    selectedMed:'',
-//   });
   const [valuesPat, setValuesPat] = useState({
     selectedPat:''
    });
@@ -105,26 +98,6 @@ const [patient, setPatient]=useState()
         })
         .catch((err)=>console.log('err',err))
 
-        // to create ampty medical record
-        // var d = new Date
-        // var month = d.getMonth()+1
-        // if (month<10){month = '0' + month}
-        
-        // var date = [d.getFullYear(),
-        //          month,
-        //         d.getDate()
-        //        ].join('-')
-             
-        //   // date = date.toString()
-        //   console.log("date", date)
-
-        // setMedical({
-        //   patientId:valuesPat.selectedPat,
-        //   createDate: date,
-        //   description: "un nouveau Patient avec des signes...",
-        //   antecedents: []
-
-        // })
         console.log('patients data', data)
       })
       .catch((err)=>console.log('error',err))
@@ -132,7 +105,6 @@ const [patient, setPatient]=useState()
 
   };
   console.log('valus of patients', valuesPat)
-//   console.log("valueMed", valuesMed)
 
 
 

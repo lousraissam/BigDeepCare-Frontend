@@ -35,17 +35,6 @@ const Sidebar = ({mode, setMode}) => {
             <List >   
         
 
-         
-
-          <ListItem disablePadding>
-            <ListItemButton >
-              <ListItemIcon>
-                <Home />
-              </ListItemIcon>
-              <ListItemText primary="Dashboard" />
-            </ListItemButton>
-          </ListItem>
-
           <StyledNavLink to= "/dashboard-aideS/medecins">
           <ListItem disablePadding>
             <ListItemButton >

@@ -44,37 +44,6 @@ import axios from 'axios'
     state:"ACTIVE"
   });
 
-//   useEffect(()=>{
-
-//     var token = localStorage.getItem('token')
-//     token = token.substring(1,token.length-1)
-//     console.log("token from profil", token)
-//     var username = localStorage.getItem('username')
-//     username=username.substring(1,username.length-1)
-//     axios.get(`http://localhost:9191/service-auth/users/get/${username}`,{
-//       headers:{
-//         ContentType:'application/json',
-//         Authorization: token 
-//       }
-//     })
-//     .then((response)=>{
-//       var data=response.data
-//       console.log("profil response",data);
-//       setValues({
-//          firstName: data.username,
-//          lastName: '',
-//           email: '',
-//           phone: data.telephone,
-//           state:""
-
-//       })
-
-//     })
-//     .catch((err)=>console.log("error", err))
-      
-   
-
-//   },[])
 
   const handleChange = (event) => {
     setValues({
@@ -100,10 +69,6 @@ import axios from 'axios'
 
   }
 
-//   useEffect(()=>{
-    
-
-//   },[])
 
   return (
     <Box>

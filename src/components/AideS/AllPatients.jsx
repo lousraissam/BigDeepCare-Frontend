@@ -77,23 +77,7 @@ const AllPatients = () => {
             setPatients(data)
             console.log('data from all patients', data)
 
-            // for(let i=0; i<data.length;i++){
-            //   let id = data[i].id
-            //   var meds=[]
-            //   axios.get(`http://localhost:9191/service-auth/users/${id}/medecin`, {
-            //     headers:{
-            //         ContentType:'application/json',
-            //         Authorization: token         
-            //        }
-            // })
-            // .then((response)=>{
-            //   let data = response.data
-            //   meds.push(data)
-            //   setMedecinOfPatient(meds)
-              
-            // })
-            
-            // }
+         
             
         })
 
@@ -104,10 +88,6 @@ const AllPatients = () => {
           })
 
     },[])
-
-    // console.log('medecin of patient', medecinOfPatient)
-
-
 
 
     return (

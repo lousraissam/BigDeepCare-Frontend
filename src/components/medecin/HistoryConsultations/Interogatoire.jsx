@@ -62,26 +62,15 @@ axios.get()
 
         <Stack direction='column' >
       <FormControlLabel control={<Checkbox checked={douleur_torasique}
-//  onChange={(event)=>{
-//     setDouleur_torasique(event.target.checked)
-//     setInterogatoire({...interogatoire,douleur_torasique:event.target.checked })
-// }}
+
  inputProps={{ 'aria-label': 'controlled' }} />} label="Douleur torasique" />
 
    <FormControlLabel control={<Checkbox checked={dyspne}
-//  onChange={(event)=>{
-//     setDyspne(event.target.checked)
-//     setInterogatoire({...interogatoire,dyspne:event.target.checked })
-//  }
 
-// }
  inputProps={{ 'aria-label': 'controlled' }} />} label="dyspne" />
 
 <FormControlLabel control={<Checkbox checked={hypotimie}
-//  onChange={(event)=>{setHypotimie(event.target.checked)
-//     setInterogatoire({...interogatoire,hypotimie:event.target.checked })
 
-// }}
  inputProps={{ 'aria-label': 'controlled' }} />} label="hypotimie" />
 
  
@@ -89,19 +78,12 @@ axios.get()
 
 <Stack direction='column' >
 <FormControlLabel control={<Checkbox checked={palpitations}
-//  onChange={(event)=>{setPalpitations(event.target.checked)
-//     setInterogatoire({...interogatoire,palpitations:event.target.checked })
 
-// }}
  inputProps={{ 'aria-label': 'controlled' }} />} label="palpitations" />
 
 
   <FormControlLabel control={<Checkbox checked={syncope}
-//  onChange={(event)=>{
-//     setSyncope(event.target.checked)
-//     setInterogatoire({...interogatoire,syncope:event.target.checked })
 
-// }}
  inputProps={{ 'aria-label': 'controlled' }} />} label="syncope"
   />
 
@@ -120,14 +102,7 @@ axios.get()
                 fullWidth
                 label="sedantarite"
                 name="sedantarite"
-                // onChange={(event)=>{setSedantarite(event.target.value)
-                // setInterogatoire({...interogatoire,sedantarite:event.target.value })
-
-
-                // }}
-
-                // required
-                // value={values.lastName}
+               
                 variant="outlined"
               />
             </Grid>
@@ -140,14 +115,7 @@ axios.get()
                 fullWidth
                 label="colesterol"
                 name="colesterol"
-                // onChange={(event)=>{setColesterol(event.target.value)
-                // setInterogatoire({...interogatoire,colesterol:event.target.value })
-
-                    
-
-                // }}
-                // required
-                // value={values.lastName}
+               
                 variant="outlined"
               />
             </Grid>
@@ -162,14 +130,6 @@ axios.get()
                 fullWidth
                 label="autres"
                 name="autre"
-                // onChange={(event)=>{setAutre(event.target.value)
-                // setInterogatoire({...interogatoire,autre:event.target.value })
-
-                    
-
-                // }}
-                // required
-                // value={values.lastName}
                 variant="outlined"
               />
             </Grid>     
@@ -186,13 +146,7 @@ axios.get()
             p: 2
           }}
         >
-          {/* <Button
-            onClick={save}
-            color="primary"
-            variant="contained"
-          >
-            Save details
-          </Button> */}
+        
         </Box>
       </Card>
 

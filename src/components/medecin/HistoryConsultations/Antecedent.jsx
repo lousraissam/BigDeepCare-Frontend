@@ -26,16 +26,9 @@ const Antecedent = (props) => {
     const location = useLocation();
     const idPatient = props.idPatient
 
-    const [antecedents, setAntecedents] = useState()
-    const [antecedent, setAntecedent] = useState({})
-    //   // med:'',
-    //   // cher:"",
-    //   // fam:"",
-    //   // hab:''
-    // // }])
+  
 
     const[medical, setMedical]=useState()
-    // const [medicaux, setMedicaux] = useState("");
     const [inputMed, setInputMed] = useState([{
        id: uuidv4(), 
        medic: ''
@@ -46,17 +39,9 @@ const Antecedent = (props) => {
       axios.get(`http://localhost:9191/service-dm/DM/patient/${idPatient}`)
       .then((response)=>{
         setMedical(response.data)
-      //   setAntecedent( {
-      //     med:response.data.antecedents[0],
-      //     cher:response.data.antecedents[1],
-      //     fam:response.data.antecedents[2],
-      //     hab:response.data.antecedents[3],
-      // })
       })
       .catch((err)=>console.log(err))
     },[])
-
-    console.log("reeeeeeeeeest anntttttttt", medical?.antecedents[0]?.nom)
 
     const addInputMed =()=>{
       setInputMed([...inputMed, { id: uuidv4(), medic: '' }])
@@ -69,7 +54,6 @@ const Antecedent = (props) => {
       setInputMed(values)
       }
     }
-    const [cherigicaux, setCherigicaux] = useState("");
     const [inputCher, setInputCher] = useState([
       { id: uuidv4(), cher: '' },
 
@@ -85,7 +69,6 @@ const Antecedent = (props) => {
       setInputCher(values)
       }
     }
-    const [familiaux, setFamiliaux] = useState("");
     const [inputFam, setInputFam] = useState([
       { id: uuidv4(), fam: '' },
 
@@ -101,7 +84,6 @@ const Antecedent = (props) => {
       setInputFam(values)
       }
     }
-    const [habitude, setHabitude] = useState("");
     const [inputHab, setInputHab] = useState([
       { id: uuidv4(), hab: '' },
 
@@ -119,64 +101,6 @@ const Antecedent = (props) => {
     }
 
 
-  
-    const [values, setValues] = useState({
-      
-      });
-
-      
-
-    
-
- 
-  // const handleChangeCher= (event) => {
-  //   setCherigicaux({
-  //     ...cherigicaux,
-  //     type:0,
-  //     [event.target.name]: event.target.value
-  //   });
-  // };
-  // const handleChangeFam = (event) => {
-  //   setFamiliaux({
-  //     ...familiaux,
-  //     type: 1,
-  //     [event.target.name]: event.target.value
-  //   });
-  // };
-  // const handleChangeHab = (event) => {
-  //   setHabitude({
-  //     ...habitude,
-  //     type:3,
-  //     [event.target.name]: event.target.value
-  //   });
-  // };
-
-  
-
-  // useEffect(()=>{
-  //   let ant = []
-  //   ant.push(medicaux, cherigicaux, familiaux, habitude)
-
-  //   setAntecedents(ant)
-  // },[medicaux, cherigicaux, familiaux, habitude])
-
-
-  // const handleChange = (event) => {
-  //   setMedicaux({
-  //     ...medicaux,
-  //     type:2,
-  //     [event.target.name]: event.target.value
-  //   });
-  //   setMedical({
-  //     ...medical,
-  //     [event.target.name]: event.target.value
-
-  //   })
-  // };
-
-
- 
-  
     return (
 
     <Box >
@@ -218,10 +142,7 @@ const Antecedent = (props) => {
                 fullWidth
                 // label="ex HTA..."
                 name="nom"
-                // onChange={handleChange}
-                // onChange={e=>
-                //   setMedicaux(...medicaux, e.target.value)
-                // }
+               
                 
                 value={medical?.antecedents[0]?.nom}
                 

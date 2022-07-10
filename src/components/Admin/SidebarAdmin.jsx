@@ -22,14 +22,14 @@ const Sidebar = ({mode, setMode}) => {
         <Box  flex={1} p={2} sx={{display:{xs: "none", sm:"block"}}}>
           <Box position="fixed">
             <List >
-          <ListItem disablePadding>
+          {/* <ListItem disablePadding>
             <ListItemButton >
               <ListItemIcon>
                 <Home />
               </ListItemIcon>
               <ListItemText primary="Dashboard" />
             </ListItemButton>
-          </ListItem>
+          </ListItem> */}
     
           <ListItem disablePadding>
           <StyledNavLink to="/dashboard-admin/all-users">

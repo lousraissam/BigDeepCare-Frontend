@@ -175,26 +175,6 @@ export const AccountProfileDetails = (props) => {
               xs={12}
             >
             
-              {/* <TextField
-                fullWidth
-                label="Select State"
-                name="state"
-                onChange={handleChange}
-                required
-                select
-                SelectProps={{ native: true }}
-                value={values.state}
-                variant="outlined"
-              >
-                {states.map((option) => (
-                  <option
-                    key={option.value}
-                    value={option.value}
-                  >
-                    {option.label}
-                  </option>
-                ))}
-              </TextField> */}
             </Grid>
           </Grid>
         </CardContent>

@@ -215,11 +215,7 @@ useEffect(() => {
         
         </CardContent>
         </Card>
-  
 
-    {/* type of disease is {result[0]} with confidence of {result[1]}%
-    type of disease is {result[0]} with confidence of {result[1]}%
-    type of disease is {result[0]} with confidence of {result[1]}% */}
 
 
     </Stack>

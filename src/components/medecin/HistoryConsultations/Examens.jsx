@@ -223,13 +223,7 @@ useEffect(()=>{
             p: 2
           }}
         >
-          {/* <Button
-          onClick={saveExamen}
-            color="primary"
-            variant="contained"
-          >
-            Save
-          </Button> */}
+         
         </Box>
       </Card>
     </form>
@@ -238,52 +232,7 @@ useEffect(()=>{
     </Stack>
 
     
-     {/* <Stack  style={{marginTop:'4%'}} direction="row" spacing={15} >
-
-             <Box>
-
-    <Card sx={{ width: 250 , height:160}} onDoubleClick={showEcg}>
-      <CardActionArea>
-        <CardMedia
-          component="img"
-          height="100"
-          width='30%'
-          image={bgEcg}
-          alt="ECG"
-        />
-        <CardContent>
-          <Typography variant="body2" color="text.secondary">
-            Consulter ECG du Patient 
-          </Typography>
-        </CardContent>
-      </CardActionArea>
-    </Card>
-    </Box>
-
-    <Box>
-    <StyledNavLink to= '/dashboard-medecin/ecg_img'>
-
-<Card sx={{ width: 250, height: 160 }} onDoubleClick={showEcg}>
-  <CardActionArea>
-    <CardMedia
-      component="img"
-      height="100"
-      width='350'
-      image={ecgimg}
-      alt="ECG"
-    />
-    <CardContent>
-      <Typography variant="body2" color="text.secondary">
-        Consulter ECG via image 
-      </Typography>
-    </CardContent>
-  </CardActionArea>
-</Card>
-</StyledNavLink>
-</Box>
-</Stack>
- */}
-
+  
 
         </Box>
         

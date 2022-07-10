@@ -61,23 +61,13 @@ const Mypatients = () => {
     const handleOnCellClick = (params) => {
       setSelected(params);
 
-      // for addData to add after 
-      // if (selected!==is)
+     
       var diveceKey = params.row.NumdDeMachine
-      // console.log('device',diveceKey )
-
-      // navigate("/dashboard-medecin/ecg", { state: { NumDeMachine: diveceKey } })
-      let idPatient = params.row.id
-      // navigate("/dashboard-medecin/dossier-medical", { state: { idPatient: idPatient } })
-      navigate("/dashboard-medecin/patient", { state: { idPatient: idPatient,NumDeMachine: diveceKey } })
-
       
-
-
+      let idPatient = params.row.id
+      navigate("/dashboard-medecin/patient", { state: { idPatient: idPatient,NumDeMachine: diveceKey } })
     };
-    // console.log("patients", patients);
-
-    // console.log("selected",selected)
+    
   
 
     const rows=[]
@@ -134,39 +124,9 @@ const Mypatients = () => {
     })
       .then((response)=>{
           var data=response.data
-          console.log('consultaion', response)
-          // setPatients(data)
           setConsultations(data)
-          // for (let i=0; i<consultations.length; i++){
-          //     Idcons.push(consultations[i].dm.patientId)
-          //     setIdCons(Idcons)
-          // }
-          // axios.get(`http://localhost:9191/service-auth/users/medecin/${id}/patients`, {
-          //     headers:{
-          //         ContentType:'application/json',
-          //         Authorization: token         
-          //        }
-          // })
-          
-          // .then((response)=>{
-          //     var data1=response.data
-          //     setMesPatients(data1)
-          //     for(let i=0; i<data1.length; i++){
-          //         IdPatient.push(data1[i].id)
-          //     }
-          //     setIdP(IdPatient)
-
-          //     for(let i=0; i<idP.length; i++){
-          //         if(idCons.indexOf(idP[i]) !== -1){
-
-          //         }
-          //     }
-
-  
-          // })
 
 
-          
       })
 
       .catch((err)=>{
