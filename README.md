@@ -1,7 +1,7 @@
-## Medical clinic with 4 roles (Doctor, Patient, Staff, Admin)
+# Medical clinic with 4 roles (Doctor, Patient, Staff, Admin)
 
-# Platform functionalities
-# Doctor
+### Platform functionalities
+### Doctor
 • Login to the platform. 
 
 • check list of his patients.
@@ -20,7 +20,7 @@
 
 • Consult dashboard of Statistics.
 
-# Staff
+### Staff
 
 • Login to the platform.
 
@@ -34,7 +34,7 @@
 
 • Manage appointments (Check/create).
 
-# Patient
+### Patient
 
 • Login to the platform.
 
@@ -44,15 +44,15 @@
 
 • edit his profile
 
-# Admin
+### Admin
 • Login to the platform.
 
 • Manage and create user with different roles doctors, and staff).
 
-# login interface
+### login interface
 ![f0](https://user-images.githubusercontent.com/64719616/182234982-78db43a7-8116-43cf-86b7-cdf6f093f570.PNG)
 
-# doctor dashboard
+### doctor dashboard
 ![medecin2](https://user-images.githubusercontent.com/64719616/182235764-6eaeddb2-4e69-41bd-8ba0-282dc09c6dc1.PNG)
 
 ![f1](https://user-images.githubusercontent.com/64719616/182235951-c86b225d-a279-4eea-8399-e3315a2a8c6a.PNG)
@@ -61,7 +61,7 @@
 ![Global architecture](https://user-images.githubusercontent.com/64719616/182236548-0c4c052b-bb63-47bf-baaf-beb05709acfc.png)
 
 
-# Getting Started with C![Global architecture](https://user-images.githubusercontent.com/64719616/182236399-99db563a-d74f-4e37-848f-0624c99eaa4d.png)
+# Getting Started with 
 reate React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
